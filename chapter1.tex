@@ -1,0 +1,133 @@
+\chapter{随机事件与概率}
+\section{随机事件间的关系及运算}
+\subsection{事件间的运算规律}
+\begin{enumerate}
+    \item 交换律 $A \cup B = B \cup A,AB = BA$
+    \item 结合律 $(A \cup B) \cup C = A \cup (B \cup C)$ $(AB)C = A(BC)$
+    \item 分配律 $(A \cup B) \cap C = (A \cap C) \cup (B \cap C) = AC \cup BC$
+          $(A \cap B) \cup C = (A \cup C) \cap (B \cup C) = (A \cup C)(B \cup C)$
+    \item 德摩根律 $\overline{A \cup B}  = \overline A  \cap \overline B ,\overline {A \cap B}  = \overline A  \cup \overline B $
+\end{enumerate}
+\section{概率的定义}
+\begin{enumerate}
+    \item 排列：$P_n^m= A_n^m=n(n-1)(n-2) \cdots (n-m+1)=\frac{n!}{(n-m)!}$
+    \item 组合：$C_n^m = \frac{P_n^m}{m!} = \frac{n(n - 1)(n - 2)....(n - m + 1)}{m!} = \frac{n!}{(n - m)m!}$
+    \item 重复排列：$n^m$
+    \item 重复组合：$C_{n + m - 1}^m$
+\end{enumerate}
+概率的公理化定义：设试验$E$的样本空间为$S$，对于$S$中的每一个事件$A$，都有一个实数$P(A)$与它对应，称为事件$A$的概率，如果集合函数$P(·)$满足下列条件：
+\begin{enumerate}
+    \item 非负性：对于每一个事件A，有$P(A) \ge 0$
+    \item 规范性：对于必然事件S，有$P(S) = 1$
+    \item 可列可加性：设$A_1,A_2,\cdots$是两两互不相容的事件，即$A_iA_j = \emptyset (i \ne j)$，则有
+          $$P\left( {\bigcup\limits_{i = 1}^\infty  {A_i} } \right) = \sum\limits_{i = 1}^\infty  {P(A_i)}
+          $$
+\end{enumerate}
+
+\section{概率的性质}
+\begin{enumerate}
+    \item $P(\emptyset ) = 0$
+    \item （概率的有限可加性）若有限个${A_1},{A_2}, \cdots ,{A_n}$是两两互不相容的事件，则
+          $$P\left( {\bigcup\limits_{i = 1}^n {A_i} } \right) = \sum\limits_{i = 1}^n {P(A_i)}
+          $$
+    \item 设$A,B$是两个事件且$A \subset B$，则$P(A) \leqslant P(B),\quad P(B - A) = P(B) - P(A) $
+    \item （减法公式）设$A,B$是任意两个事件，有$P(A-B)=P(A)-P(AB)=P(A \overline B)$
+    \item 对于任一事件$A$，有$P(A) \leq 1$
+    \item （加法公式）对于任意两事件$A,B$有$P(A \cup B) = P(A) + P(B) - P(AB)$
+    \item （半可加性）对于任意两事件$A,B$有$P(A \cup B) \leqslant P(A) + P(B)$
+\end{enumerate}
+推广  三个事件和的情况
+\begin{equation}
+    \begin{gathered}
+        P({A_1} \cup {A_2} \cup {A_3})
+        = P({A_1}) + P({A_2}) + P({A_3}) - P({A_1}{A_2}) - P({A_2}{A_3}) \hfill \\
+        \quad  - P({A_1}{A_3}) + P({A_1}{A_2}{A_3}) \hfill \\
+    \end{gathered}
+\end{equation}
+
+n个事件和的情况
+\begin{equation}
+    P({A_1} \cup {A_2} \cup  \cdots  \cup {A_n}) = \sum\limits_{i = 1}^n {P({A_i})}  - \sum\limits_{1 \leqslant i < j \leqslant n} {P({A_i}{A_j})}$$$$ + \sum\limits_{1 \leqslant i < j < k \leqslant n} {P({A_i}{A_j}{A_k})}  +  \cdots  + {( - 1)^{n - 1}}P({A_1}{A_2} \cdots {A_n})
+\end{equation}
+
+$P(AB)+P(A\overline{B})=P(A)$
+\section{条件概率}
+\begin{definition}
+    设$A,B$是两个事件，且$P(A) > 0$，称$$P(B|A) = \frac{{P(AB)}}{{P(A)}}$$为在事件$A$发生的条件下事件$B$发生的条件概率。
+\end{definition}
+\begin{property} %TODO
+    条件概率
+    \begin{enumerate}
+        \item 非负性 $P(B|A) \ge 0$
+        \item 规范性 $P(S|A) = 1$
+        \item $P(\left. {{A_1} \cup {A_2}} \right|B) = P(\left. {{A_1}} \right|B) + P(\left. {{A_2}} \right|B) - P(\left. {{A_1}{A_2}} \right|B)$
+        \item $P( A |B) = 1 - P(\overline A|B)$
+        \item 可列可加性 设$A_1,A_2,\cdots$是两两互不相容的事件 $P(\left. {\bigcup\limits_{i = 1}^\infty  {{A_i}} } \right.|B) = \sum\limits_{i = 1}^\infty  {P(\left. {{A_i}} \right|B)} $
+    \end{enumerate}
+\end{property}
+
+
+\begin{theorem}[乘法定理]
+    设$P(A) > 0$,则有$P(AB) = P(\left. B \right.|A)P(A)$
+
+    设$A,B,C$为事件，且$P(AB)>0$，则有$P(ABC) = P(\left. C \right|AB)P(\left. B \right|A)P(A)$
+\end{theorem}
+
+
+
+推广：设${A_1},{A_2}, \cdots ,{A_n}$为$n$个事件，$n \ge 2$且$P({A_1}{A_2} \cdots {A_{n - 1}}) > 0$,则有
+\begin{equation}
+    \begin{gathered}
+        P({A_1}{A_2} \cdots {A_n}) = P(\left. {{A_n}} \right|{A_1}{A_2} \cdots {A_{n - 1}}) \times  \hfill \\
+        P(\left. {{A_{n - 1}}} \right|{A_1}{A_2} \cdots {A_{n - 2}}) \times  \cdots  \times P(\left. {{A_2}} \right|{A_1})P({A_1})
+    \end{gathered}
+\end{equation}
+
+\subsection{全概率公式}
+\begin{definition}[样本空间的划分]
+    设$S$为试验$E$的样本空间，$B_1,B_2,\cdots,B_n$为$E$的一组事件，若$B_iB_j = \emptyset (i \ne j)$且$\bigcup\limits_{i = 1}^n {{B_i}}  = S$，则称$B_1,B_2,\cdots,B_n$为样本空间$S$的一个划分。
+\end{definition}
+\begin{theorem}[全概率公式]
+    设试验$E$的样本空间为$S$,$A$为$E$的事件，$B_1,B_2,\cdots,B_n$为S的一个划分，且$P(B_i) > 0(i = 1,2,\cdots,n)$，则
+    $$P(A) = \sum\limits_{i = 1}^n {P({B_i})P(\left. A \right|{B_i})}
+    $$
+\end{theorem}
+
+
+注意
+条件$B_1,B_2,\cdots,B_n$为样本空间的一个分割，可改成$B_1,B_2,\cdots,B_n$互不相容，且$A \subset \bigcup\limits_{i=1}^{n} B_i $,上述定理依然处成立。
+
+\subsection{贝叶斯公式}
+\begin{theorem}
+    设试验$E$的样本空间为$S$,$A$为$E$的事件，$B_1,B_2,\cdots,B_n$为S的一个划分，且$P(A) > 0,P(B_i) > 0(i = 1,2,\cdots,n)$，则$$P({B_i}|\left. A \right.) = \frac{{P({B_i})P(\left. A \right|{B_i})}}{{\sum\limits_{j = 1}^n {P({B_j})P(\left. A \right|{B_j})} }}$$
+\end{theorem}
+
+
+\section{独立性}
+\subsection{两个事件的独立性}
+\begin{definition}
+    设$A,B$是两个事件，如果$$P(AB) = P(A)P(B)$$则称事件$A$与$B$相互独立。
+\end{definition}
+
+等价条件 $P(B|A) = P(B) \quad P(B|\overline A)=P(B) \quad P(B|\overline A)=P(B|A)$
+
+性质 若$A$与$B$相互独立，则有$A$与$\overline B$，$\overline A$与$B$，$\overline A$与$\overline B$也相互独立。
+
+\subsection{多个事件相互独立}
+\begin{definition}
+    设$A,B,C$是三个事件，如果
+    $$\left\{ \begin{gathered}
+            P(AB) = P(A)P(B) \\
+            P(BC) = P(B)P(C) \\
+            P(AC) = P(A)P(C) \\
+            P(ABC) = P(A)P(B)P(C) \\
+        \end{gathered}  \right.$$
+    则称事件$A,B,C$相互独立。
+\end{definition}
+
+推广:
+设$A_1,A_2,\cdots,A_n$是$n$个事件，如果对于其中任意$k$个事件$A_{i_1},A_{i_2},\cdots,A_{i_k}(1 \le i_1 < i_2 < \cdots < i_k \le n)$，有$$P(A_{i_1}A_{i_2}\cdots A_{i_k}) = P(A_{i_1})P(A_{i_2})\cdots P(A_{i_k})$$则称事件$A_1,A_2,\cdots,A_n$相互独立。
+
+两个结论：
+1. 若事件$A_1,A_2,\cdots,A_n(n \ge 2)$相互独立，则其中任意$k(2 \le k \le n)$个事件也相互独立。
+2. 若$n$个事件$A_1,A_2,\cdots,A_n(n \ge 2)$相互独立，则将$A_1,A_2,\cdots,A_n$中任意一个或几个换成它们的对立事件，所得到的$n$个事件也相互独立。

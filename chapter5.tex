@@ -1,0 +1,427 @@
+\chapter[统计量及其分布]{统计量及其分布}
+\section{总体与样本}
+\subsection{总体与个体}
+\begin{definition}
+    \textbf{总体}是指研究对象的全体，通常用$\Omega$表示。
+
+\end{definition}
+
+总体还有\textbf{有限总体}和\text{无限总体}
+\subsection{样本}
+\begin{definition}
+    \bf{样本}是指从总体中抽取的一部分个体，如$x_1,x_2 , \cdots,x_n$，为一个样本容量为$n$的样本，样本中的个体称为样品。样本通常用$\omega$表示。
+\end{definition}
+\begin{property} 样本的i.i.d.
+    \begin{enumerate}
+        \item 样本具有代表性，即要求总体中每一个个体都有同等机会被选入样本，这便意味着每一样品$x_i$，与总体$X$有相同的分布．
+        \item 样本要有独立性，即要求样本中每一样品的取值不影响其他样品的取值，这意味着$x_1,x_2 , \cdots,\\x_n$相互独立
+    \end{enumerate}
+\end{property}
+
+用简单随机抽样方法得到的样本称为简单随机样本，也简称样本．除非特别指明，
+本书中的样本皆为简单随机样本．于是，样本$x_1,x_2 , \cdots,x_n$可以看成是相互独立的具有同一分布的随机变量，又称为i.i.d.样本，其共同分布即为总体分布．
+
+设总体X具有分布函数$F(x),x_1,x_2 , \cdots,x_n$为取自该总体的容量为$n$的样本，则样本联合分布函数为
+$$
+    F(x_{1},x_{2},\cdots,x_{n})=\prod_{i=1}^{n}F(x_{i})
+$$
+
+\section{样本数据整理与显示}
+\subsection{经验分布函数}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自总体分布函数为$F(x)$的样本，若将样本观测值由小到大进行排列，记为$x_{(1)}, x_{(2)}, \cdots , x_{(n)}$,则称$x_{(1)}, x_{(2)}, \cdots , x_{(n)}$为有序样本，用有序样本定义如下函数：
+    $$
+        F_n(x)=\left\{
+        \begin{array}{ll}
+            0,           & x<x_{(1)}                                 \\
+            \frac{k}{n}, & x_{(k)}\leq x<x_{(k+1)}, k=1,2,\cdots,n-1 \\
+            1,           & x\geq x_{(n)}
+        \end{array}
+        \right.
+    $$
+    则$F_n(x)$是一非减右连续函数，且满足$F_n(- \infty)=0$和$F_n(\infty)=1$
+    由此可见，$F_n(x)$是一个分布函数，称$F_n(x)$为该样本的经验分布函数。
+\end{definition}
+
+\begin{theorem}
+    格利文科定理：设$x_1,x_2,\cdots,x_n$是来自总体分布函数为$F(x)$的样本，$F_n(x)$为该样本的经验分布函数，当$n\rightarrow \infty$时，有
+    $$
+        P\left( \sup\limits_{-\infty < x < \infty} |F_n(x)-F(x)| \to 0 \right) =1
+    $$
+\end{theorem}
+
+\section{统计量及其分布}
+\subsection{统计量与抽样分布}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自某总体的样本，若样本函数$T=T(x_1 , x_2 , \cdots , x_n)$中不含有任何未知参数，则称$T$为统计量。统计量的分布称为抽样分布。
+\end{definition}
+
+\subsection{样本均值及其抽样分布}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自总体$X$的样本，称
+    $$
+        \overline{x}=\frac{1}{n}\sum\limits_{i=1}^n x_i
+    $$
+    为样本均值。
+\end{definition}
+
+\begin{theorem}
+    若把样本中的数据与样本均值之差称为偏差，则样本所有偏差之和为$0$，即\\
+    $\sum_{i=1}^n(x_i-\overline{x})=0$
+\end{theorem}
+\begin{theorem}
+    数据观测值与样本均值的偏差平方和最小，即在形如$\sum (x_i - c)^2$的函数中，$\sum (x_i - \overline{x})^2$最小。其中$c$为任意给定常数。
+\end{theorem}
+
+\begin{theorem}
+    设$x_1,x_2,\cdots,x_n$是来自总体$X$的样本，$\overline{x}$是样本均值。
+
+    （1）若总体分布为$N(\mu,\sigma^2)$,则$\overline{x}$的精确分布为$N(\mu,\sigma^2 / n)$
+
+    （2）若总体分布未知或不是正态分布，$E(x)=\mu,\operatorname{Var}(x)=\sigma^2$存在，则$n$较大时$\overline{x}$的渐近分布为$N(\mu,\sigma^2 / n)$，常记为$\overline{x}\dot{\sim} N(\mu,\sigma^2 / n)$。这里渐近分布是指$n$较大时的近似分布。
+\end{theorem}
+
+
+\subsection{样本方差与样本标准差}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自总体$X$的样本，则它关于样本均值$\overline{x}$的方差的平均偏差平方和$S_n^2=\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x})^2$称为样本方差，$S_n=\sqrt{S_n^2}$称为样本标准差。在$n$不大时，常用
+    $$
+        S^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\overline{x})^2
+    $$
+    作为样本方差（也称\textbf{无偏方差}），$S=\sqrt{S^2}$称为样本标准差。
+\end{definition}
+样本偏差平方和有三个常用的表达式：
+\begin{equation}
+    \sum (x_i - \overline{x})^2 = \sum x_i^2 - n\overline{x}^2 = \sum x_i^2 - \frac{(\sum x_i)^2}{n}
+\end{equation}
+\begin{theorem}
+    设总体$X$具有二阶矩，即$E(X)=\mu,\operatorname{Var}(X)=\sigma^2 < \infty,x_1 , x_2 , \cdots, x_n$为从该总体得到的样本，$\overline{x}$和$S^2$分别是样本均值和样本方差，则
+
+    $$
+        E(\overline{x})=\mu,\operatorname{Var}(\overline{x})=\frac{\sigma^2}{n},E(S^2)=\sigma^2
+    $$
+\end{theorem}
+此定理表明样本均值的期望与总体均值相同，而样本均值的方差是总体方差的$\frac{1}{n}$.
+
+\subsection{样本矩及其函数}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自总体$X$的样本，$k$为正整数，则统计量
+    $$
+        a_k=\frac{1}{n}\sum_{i=1}^{n}x_i^k
+    $$
+    为样本$k$阶原点矩，特别，样本一阶原点矩就是样本均值。统计量
+    $$
+        b_k=\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x})^k
+    $$
+    为样本$k$阶中心矩。特别，样本二阶中心矩就是样本方差。
+\end{definition}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自总体$X$的样本，则统计量
+    $$
+        \hat{\beta}_s = b_3 / b_2^{3/2}
+    $$
+    为样本偏度。
+
+\end{definition}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自总体$X$的样本，则统计量
+    $$
+        \hat{\beta}_k = \frac{b_4}{b_2^{2}}-3
+    $$
+    为样本峰度。
+\end{definition}
+\subsection{次序统计量及其分布}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自总体$X$的样本，将它们按大小排列，得到$x_{(1)}\leq x_{(2)}\leq \cdots \leq x_{(n)}$，则称$x_{(1)},x_{(2)},\cdots,x_{(n)}$为该样本的次序统计量。
+\end{definition}
+在一个简单随机样本中，$x_1,x_2,\cdots,x_n$是独立同分布的，而次序统计量$x_{(1)},x_{(2)},\cdots,x_{(n)}$即不独立，分布也不同。
+
+\begin{theorem}\label{thm:5.3.5}
+    设总体$X$的密度函数为$p(x)$，分布函数为$F(x)$，$x_1 , x_2 , \dots,x_n$为样本，则第$k$个次序统计量$x_{(k)}$的密度函数为
+    $$
+        p_{(k)}(x)=\frac{n!}{(k-1)!(n-k)!}[F(x)]^{k-1}[1-F(x)]^{n-k}p(x)
+    $$
+\end{theorem}
+特别，令$k=1$和$k=n$即得到最小次序统计量$x_{(1)}$和最大次序统计量$x_{(n)}$的密度函数分别为
+$$
+    \begin{aligned}
+        p_1(x) & =n\cdot(1-F(x))^{n-1}p(x), \\
+        p_n(x) & =n\cdot(F(x))^{n-1}p(x).
+    \end{aligned}
+$$
+
+
+\begin{theorem}
+    在定理\ref{thm:5.3.5}的记号下，次序统计量$(x_{(i)},x_{(j)})(i<j)$的联合分布密度函数为
+    $$
+        p_{(i,j)}(y,z)=\frac{n!}{(i-1)!(j-i-1)!(n-j)!}[F(y)]^{i-1}[F(z)-F(y)]^{j-i-1}[1-F(z)]^{n-j}p(y)p(z),y\leq z
+    $$
+\end{theorem}
+
+\paragraph{$n$个次序统计量的密度函数} $P(X_{(1)}\in (x_1 ,x_1 +dx_1],X_{(2)}\in (x_2 ,x_2 +dx_2],\cdots,X_{(n)}\in (x_n ,x_n +\\ dx_n] )$$=C_1^n p(x_1)dx_1 C_1^{n-1 }p(x_2)dx_2\cdots C_1^1 p(x_n)dx_n=n!p(x_1)\cdots,p(x_n)dx_1\cdots dx_n$,故$p(x_{(1)},x_{(2)},\\\cdots,x_{(n)})=n!p(x_1)\cdots p(x_n)$
+
+    \paragraph{样本极差} $R_n=x_{(n)}-x_{(1)}$
+    \paragraph{样本中程} $[x_{(n)}+x_{(1)}]/2$
+
+    \subsection{样本分位数和中位数}
+    样本中位数$m_{0.5}$也是一个常见的统计量，它也是次序统计量的函数，通常如下：
+    $$
+        m_{0.5}=\left\{
+        \begin{array}{ll}
+            x_{(\frac{n+1}{2})},                                & n\text{为奇数} \\
+            \frac{1}{2}(x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}), & n\text{为偶数}
+        \end{array}
+        \right.
+    $$
+    更一般的，样本$p$分位数$m_p$定义为:
+    $$
+        m_p=\left\{
+        \begin{array}{ll}
+            x_{([np]+1)}                      & np\text{不为整数} \\
+            \frac{1}{2}(x_{(np)}+x_{(np+1)}), & np\text{为整数}
+        \end{array}
+        \right.
+    $$
+    \begin{theorem}
+        设总体密度函数为$p(x)$，$x_p$为其$p$分位数，$p(x)$在$x_p$处连续且$p(x_p)>0$，则当$n\rightarrow \infty$时，样本$p$分位数$m_p$的渐近分布为
+        $$
+            m_p \dot{\sim} N(x_p,\frac{p[1-p]}{n p^2(x_p)})
+        $$
+        特别，对样本中位数，当$n \rightarrow \infty$时近似地有
+        $$
+            m_{0.5} \dot{\sim} N(x_{0.5},\frac{1}{4n p^2(x_{0.5})})
+        $$
+
+    \end{theorem}
+    \subsection{五数概括与箱线图}
+    \paragraph{五数}
+    设$x_1,x_2,\cdots,x_n$是来自总体$X$的样本，将它们按大小排列，得到$x_{(1)}\leq x_{(2)}\leq \cdots \leq x_{(n)}$，则称$x_{(1)},x_{(2)},\cdots,x_{(n)}$为该样本的次序统计量。最小观测值$x_{\min}=x_{(1)}$，最大观测值$x_{\max}=x_{(n)}$，中位数$m_{0.5}$，第一$4$分位数$Q_1=m_{0.25}$和第三$4$分位数$Q_3=m_{0.75}$,称为该样本的五数。
+
+
+    %     \section*{习题 5.3}
+
+    %     4.${\overline{x}}_{n}={\frac{1}{n}}\sum_{i=1}^{n}x_{i},s_{n}^{2} \tilde{=}\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\overline{x_{n}})^{2},n=1,2,\cdots$,证明:
+    %     $$
+    %         \begin{aligned}
+    %              & \bar{x}_{_{n+1}}=\bar{x}_{_n}+\frac{1}{n+1}(x_{_{n+1}}-\overline{x}_{_n}),      \\
+    %              & s_{n+1}^{2}=\frac{n-1}{n}s_{n}^{2}+\frac{1}{n+1}(x_{n+1}-\overline{x}_{n})^{2}.
+    %         \end{aligned}
+    %     $$
+    %     解
+    %     $$
+    %         \begin{aligned}
+    %             {\overline{x}}_{n+1} & =\frac{x_{1}+x_{2}+\cdots+x_{n}+x_{n+1}}{n+1}=\frac{nx_{n}+x_{n+1}}{n+1}=\frac{(n+1)\overline{x}_{n}+x_{n+1}-\overline{x}_{n}}{n+1} \\
+    %                                  & =\bar{x}_{_n}+\frac{1}{n+1}(x_{_{n+1}}-\bar{x}_{_n}),
+    %         \end{aligned}
+    %     $$
+    %     $$
+    %         \begin{aligned}
+    %             s_{n+1}^{2} & =\frac{1}{n}\sum_{i=1}^{n+1}\left(x_{i}-\overline{x}_{n+1}\right)^{2}=\frac{1}{n}\left[\sum_{i=1}^{n}(x_{i}-\overline{x}_{n+1})^{2}+(x_{n+1}-\overline{x}_{n+1})^{2}\right]                                       \\
+    %                         & =\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x}_{n}+\bar{x}_{n}-\bar{x}_{n+1})^{2}+\frac{1}{n}(x_{n+1}-\bar{x}_{n+1})^{2}                                                                                           \\
+    %                         & =\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x}_{n})^{2}+\frac{2}{n}\sum_{i=1}^{n}(x_{i}-\overline{x}_{n})(\overline{x}_{n}-\overline{x}_{n+1})+\frac{1}{n}\sum_{i=1}^{n}(\overline{x}_{n}-\overline{x}_{n+1})^{2}+ \\
+    %                         & \frac{1}{n}(x_{_{n+1}}-\bar{x}_{_{n+1}})^{2}.
+    %         \end{aligned}
+    %     $$
+    %     由$\sum_{i=1}^{n}(x_{i}-\bar{x}_{n})=0,\frac{1}{n}\sum_{i=1}^{n}(\bar{x}_{n}-\bar{x}_{n+1})^{2}=(\bar{x}_{n}-\bar{x}_{n+1})^{2},\bar{x}_{n+1}=\bar{x}_{n}+\frac{1}{n+1}(x_{n+1}-\bar{x}_{n})$得
+    %     $$
+    %         \begin{aligned}
+    %             s_{n+1}^{2} & =\frac{1}{n}\sum_{i=1}^{n}(x_{i}-\overline{x}_{a})^{2}+\left(\frac{1}{n+1}\right)^{2}(x_{n+1}-\overline{x}_{a})^{2}+\frac{1}{n}\Big(\frac{n}{n+1}\Big)^{2}(x_{n+1}-\overline{x}_{a})^{2} \\
+    %                         & =\frac{n-1}{n}\times\frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x_{n}})^{2}+\frac{1}{n+1}(x_{n+1}-\bar{x_{n}})^{2}                                                                            \\
+    %                         & =\frac{n-1}{n}s_{n}^{2}+\frac{1}{n+1}(x_{n+1}-\overline{x}_{n})^{2}.
+    %         \end{aligned}
+    %     $$
+
+
+
+    %     24.设 $x_1,x_2,\cdots,x_{16}$是来自$N(8,4)$的样本,试求下列概率:
+
+    %     \begin{enumerate}
+    %         \item $P(x_{(16)}>10)$
+    %         \item $P(x_{(11)}>5)$
+    %     \end{enumerate}
+    %     解
+    %     $$
+    %         \begin{aligned}P(x_{_{(16)}}>10)&=1-P(x_{_{(16)}}\leqslant10)=1-\left(P(x_{,}\leqslant10)\right)^{16}\\&=1-\left(\Phi\Big(\frac{10-8}{2}\Big)\right)^{16}=1-0.8413^{16}=0.9370\end{aligned}
+    %     $$
+    %     $$
+    %         \begin{aligned}P(x_{(1)}>5)&=\left(P(x_{1}>5)\right)^{16}=\left(1-\Phi\Big(\frac{5-8}{2}\Big)\right)^{16}\\&=\left[\Phi(1.5)\right]^{16}=0.3308.\end{aligned}
+    %     $$
+
+    %     27.证明公式
+    %     $$
+    %         \sum_{k=0}^{r}\binom{n}{k}p^{k}(1-p)^{n-k}=\frac{n!}{r!(n-r-1)!}\int_{p}^{1}x^{r}(1-x)^{n-r-1}dx,\text{其中 }0\leq p\leq1.
+    %     $$
+    %     解
+
+    %     方法一：两边对$p$求导
+
+    %     方法二
+
+    %     设$x_1,x_2,\cdots,x_n$取自总体$X \sim U(0 ,1)$记
+    % $
+    % Y_i=
+    % \begin{cases}
+    %     0 , x_i > p \\
+    %     1 , x_i \leq p
+    % \end{cases}
+    % ,Y = \sum_{i=1}^{n}Y_i \sim b(n,p)
+    % $
+    %     \begin{gather*}
+    %         P(Y \leq r)=P(X_{(r+1)}>p) \\
+    %         P(Y\leq r)=\sum_{k=0}^{r}C_{n}^{k} p^k (1-p)^{r-k}\\
+    %         P(X_{(r+1)}>p)=\int_{p}^{1}\frac{n!}{r!(n-r-1)!} x^{r}(1-x)^{n-r-1}dx
+    %     \end{gather*}
+
+
+
+
+
+
+    \section{三大抽样分布}
+    若设$x_1,x_2,\cdots,x_n$和$y_1,y_2,\cdots,y_m$是来自标准正态分布的两个相互独立的样本，则此三个统计量的构造及其抽样分布如表：
+    \begin{table}[H]
+        \centering
+        \caption {三个著名统计量的构造及其抽样分布}
+        \label{tab:chap:table_1}
+        \begin{tabular}{cccc}
+            \toprule
+            % 
+            统计量的构造                                                                & 抽样分布密度函数                                                                                                         & 期望  & 方差   \\
+            \midrule
+            $\chi^2=x_1^2+x_2^2+\cdots+x_n^2$                                     & $p(y)=\frac{1}{\Gamma\left(\frac{n}{2}\right) 2^{n / 2}} y^{\frac{n}{2}-1} \mathrm{e}^{-\frac{y}{2}} \quad(y>0)$ & $n$ & $2n$ \\
+            %
+            $F=\frac{(y_1^2+y_2^2+\cdots+y_n^2)/m}{(x_1^2+x_2^2+\cdots+x_n^2)/n}$ &
+            \makecell[c]{$p(y)=\frac{\Gamma\left(\frac{m+n}{2}\right)\left(\frac{m}{n}\right)^{m / 2}}{\Gamma\left(\frac{m}{2}\right) \Gamma\left(\frac{n}{2}\right)} y^{\frac{m}{2}-1} \cdot $                   \\$\left(1+\frac{m}{n} y\right)^{-\frac{m+n}{2}}(y>0)$} & \makecell[c]{ $\frac{n}{n-2}$                                 \\$(n>2)$} &\makecell[c]{ $\frac{2n^2(m+n-2)}{m(n-2)^2}$\\$(n-4)$} \\
+                % 
+            $t=\frac{y_1}{\sqrt{(x_1^2+x_2^2+\cdots+x_n^2)/n}}$                   &
+            \makecell[c]{ $p(y)=\frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n \pi} \Gamma\left(\frac{n}{2}\right)}\left(1+\frac{y^{2}}{n}\right)^{-\frac{n+1}{2}}$                                              \\$(-\infty<y<\infty)$}       & $0 \quad (n>1)$               & \makecell[c] {$\frac{n}{n-2}$ \\$(n>2)$}          \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \subsection{\texorpdfstring{$ \chi^2$}{χ2} 分布（卡方分布）}
+    % \subsection{\chi^2分布}
+    \begin{definition}
+        设$X_1,X_2,\cdots,X_n$独立同分布于标准正态分布$N(0,1)$，则$\ \mathcal{X}^2=X_1^2+X_2^2+\cdots+X_n^2$的分布称为自由度为$n$的$\mathcal{X}^2$分布，记为$\mathcal{X}^2 \sim  \mathcal{X}^2(n)$
+    \end{definition}
+    \begin{theorem}
+        设$x_1,x_2,\cdots,x_n$是来自正态总体$N(\mu,\sigma^2)$的样本，其样本均值和样本方差分别为
+        $$
+            \overline{x}=\frac{1}{n}\sum_{i=1}^{n}x_i \text{和} s^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\overline{x})^2
+        $$
+        则有
+        \begin{enumerate}[(1)]
+            \item $\overline{x}$与$s^2$相互独立
+            \item $\overline{x}\sim N(\mu,\sigma^2 /n)$
+            \item $\frac{(n-1)s^2}{\sigma^2}\sim \mathcal{X}^2(n-1)$
+        \end{enumerate}
+    \end{theorem}
+    由中心极限定理$x\sim \mathcal{X}^2(n)$，$n$充分大时，$\frac{x-n}{\sqrt{2n}}\dot{\sim} N(0,1)$
+    \begin{theorem}
+        $X \sim \mathcal{X}^2(m),Y \sim \mathcal{X}^2(n)$,$X,Y$独立，$X+Y\sim\mathcal{X}^2(m+n)$
+    \end{theorem}
+    \begin{remark}
+        $X_i \sim \mathcal{X}^2(m_i)$,$\sum_{i=1}^{n}X_i \sim \mathcal{X}^2(\sum_{i=i}^{n}m_i)$
+    \end{remark}
+    当随机变量$\chi^{2} \sim \chi^{2}(n)$时，称满足概率等式$P\left(X^{2}\leq \mathcal{X}_{1-\alpha}^{2}(n)\right)=1-\alpha$的$\chi_{1-\alpha}^{2}(n)$是自由度为$n$的$\chi^2$分布的$1-\alpha$分位数
+    \subsection{\texorpdfstring{$F$}{F} 分布}
+    \begin{definition}
+        设随机变量$X_1 \sim \mathcal{X}^2(m),X_2 \sim \mathcal{X}^2(n)$,$X_1,X_2$独立，则称$F=\frac{X_1/m}{X_2/n}$的分布是自由度为$m$与$n$的$F$分布，记为$F \sim F(m,n)$,其中$m$称为分子自由度，$n$称为分母自由度。
+    \end{definition}
+
+    当随机变量$F\sim F(m,n)$时，对给定$\alpha(0<\alpha<1)$,称满足概率等式$P(F\leq F_{1-\alpha}(m,n))=1-\alpha$的$F_{1-\alpha}(m,n)$是自由度为$m$与$n$的$F$分布的$1-\alpha$分位数。
+    由$F$分布的构造知，若$F \sim F(m,n)$，则有$1/F \sim F(n,m)$,故对给定$\alpha(0<\alpha<1)$,
+    $$
+        \alpha = P\left(\frac{1}{F}\leq F_{\alpha}(n,m)\right)=P\left(F \geq \frac{1}{F_{\alpha}(n,m)} \right)
+    $$
+    从而
+    $$
+        P\left(F \leq \frac{1}{F_{\alpha}(n,m)}\right)=1-\alpha
+    $$
+    这说明
+    $$
+        F_{\alpha}(n,m)=\frac{1}{F_{1-\alpha}(m,n)}
+    $$
+
+    \begin{corollary}[正态总体的抽样分布]\label{cor:5.4.1}
+        设$x_1,x_2,\cdots,x_m$是来自$N(\mu_1,\sigma_1^2)$的样本，$y_1,y_2,\cdots,y_n$是来自$N(\mu_2,\sigma_2^2)$的样本，且此两样本相互独立，记
+        $$
+            s_x^2 = \frac{1}{m-1}\sum_{i=1}^{m}(x_i-\overline{x})^2,s_y^2 = \frac{1}{n-1}\sum_{i=1}^{n}(y_i-\overline{y})^2
+        $$
+        其中
+        $$
+            \overline{x}= \frac{1}{m}\sum_{i=1}^{m}x_i,\overline{y}= \frac{1}{n}\sum_{i=1}^{n}y_i
+        $$
+        则有
+        $$
+            F=\frac{s_x^2/\sigma_1^2}{s_y^2/\sigma_2^2} \sim F(m-1,n-1)
+        $$
+        特别，若$\sigma_1^2=\sigma_2^2$，则$F=s_x^2/s_y^2 \sim F(m-1,n-1)$
+    \end{corollary}
+    当随机变量$F\sim F(m,n)$时,对给定$\alpha(0<\alpha<1)$,称满足概率等式 $P(F\leq F_{1-\alpha}(m$, $n))=1-\alpha$ 的$F_{1-\alpha}(m,n)$是自由度为$m$与$n$的$F$分布的$1-\alpha$分位数.
+
+    由$F$分布的构造知，若$F\sim F(m,n)$则有$1/F\sim F(n,m)$，故对给定$\alpha(0<\alpha<1)$
+    $$\alpha=P\Big(\frac{1}{F}\leq F_{\alpha}(n,m)\Big)=P\Big(F\geq\frac{1}{F_{\alpha}(n,m)}\Big).$$
+    从而
+    $$P\Big(F\leqslant\frac{1}{F_{\alpha}(n,m)}\Big)=1-\alpha,$$
+    这说明
+    $$F_{\alpha}(n,m)=\frac{1}{F_{1-\alpha}(m,n)}.$$
+
+
+    \subsection{\texorpdfstring{$t$}{t} 分布}
+    \begin{definition}
+        设随机变量$X_1$和$X_2$独立且$X_1 \sim N(0,1),X_2 \sim \mathcal{X}^2(n)$，则称$t=\frac{X_1}{\sqrt{X_2/n}}$的分布为自由度为$n$的$t$分布，记为$t \sim t(n)$
+    \end{definition}
+    \begin{corollary}[正态总体的抽样分布]
+        设$x_1,x_2,\cdots,x_n$是来自正态分布$N(\mu,\sigma^2)$的一个样本，$\overline{x}$和$s^2$分别是样本均值和样本方差，则有
+        $$
+            t = \frac{\sqrt{n}(\overline{x}-\mu)}{s} \sim t(n-1)
+        $$
+    \end{corollary}
+    \begin{corollary}
+        在推论\ref{cor:5.4.1}的记号下，设$\sigma_1^2=\sigma_2^2=\sigma_3^2$,并记
+        $$s_{w}^{2}=\frac{(m-1) s_{x}^{2}+(n-1) s_{y}^{2}}{m+n-2}=\frac{\sum_{i=1}^{m}\left(x_{i}-\bar{x}\right)^{2}+\sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}}{m+n-2} ,
+        $$
+        则
+        $$\frac{(\bar{x}-\bar{y})-\left(\mu_{1}-\mu_{2}\right)}{s_{k} \sqrt{\frac{1}{m}+\frac{1}{n}}} \sim t(m+n-2)
+        $$
+
+    \end{corollary}
+    当随机变量$t \sim t( n )$时，对给定的$\alpha(0<\alpha<1)$,称满足概率公式$P(t\leq t_{1-\alpha}(n))=1-\alpha$的$t_{1-\alpha}(n)$是自由度为$n$的$t$分布的$1-\alpha$分位数.
+    由于$t$分布的密度函数关于$0$对称，故其分位数间有如下关系
+$$
+    t_{_\alpha}(n)=-t_{_{1-\alpha}}(n)
+$$
+\section{充分统计量}
+\subsection{充分性的概念}
+\begin{definition}
+    设$x_1,x_2,\cdots,x_n$是来自某个总体的样本，总体函数为$F(x;\theta)$,统计量$T=T(x_1,\\x_2, \cdots, x_n)$称为$\theta$的充分统计量，如果在给定$T$的取值后，$X_1,X_2,\cdots,X_n$的条件分布与$\theta$无关。
+\end{definition}
+\subsection{因子分解定理}
+\begin{theorem}
+    设总体概率函数为$f(x;\theta),x_1,x_2,\cdots,x_n$为样本，则$T=T(x_1,x_2,\cdots,x_n)$\\（$T$可以是一维的，也可以是多维的）为充分统计量的充分必要条件是：存在两个函数$g(t;\theta)$和$h(x_1,x_2,\cdots,x_n)$,使得对任意的$\theta$和任一组观测值$(x_1,x_2,\cdots,x_n)$有
+    $$
+        f(x_1,x_2,\cdots,x_n;\theta)=g(T(x_1,x_2,\cdots,x_n);\theta)h(x_1,x_2,\cdots,x_n)
+    $$
+    其中$g(t,\theta)$是通过统计量$T$的取值而依赖于样本的。
+\end{theorem}
+
+一些常见分布的充分统计量
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}cccc@{}}
+    \toprule
+    分布 & 分布列 & 参数 & 充分统计量 \\ 
+    \midrule
+    两点分布 $b(1,p)$& $p^{x}(1-p)^{1-x},x=0,1$ & $p$ & $T=x_{1}+\cdots+x_{n}$ \\
+    泊松分布$P(\lambda)$& $\frac{\lambda^x}{x!}e^{-\lambda} $ & $\lambda$ & $T=x_{1}+\cdots+x_{n}$ \\
+    均匀分布$U(0,\theta)$ & $\frac{1}{\theta},0 < x < \theta $ & $\theta$ & $T=\max (x_1,\cdots,x_n)$ \\ 
+    均匀分布 $U(\theta_1, \theta_2)$ & $\frac{1}{\theta_1-\theta_2},\theta_1 < x < \theta_2 $& $\theta_1,\theta_2 $ & $T_1=x_{(1)},T_2=x_{(n)}$ \\
+    均匀分布$U(\theta,2\theta)$ & $\frac{1}{\theta},\theta < x < 2\theta $& $\theta$ & $T_1=x_{(1)},T_2=x_{(n)}$ \\
+    正态分布$N(\mu,\sigma^2)$ & $\frac{1}{\sqrt{2 \pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$ & $\mu,\sigma^2$  & $\overline{x},\sum_{i=1}^{n}(x_i-\overline{x})^2$  \\
+    指数分布$Exp(\lambda)$  & $\lambda e^{-\lambda x},x>0$ & $\lambda$ & $T=x_{1}+\cdots+x_{n}$  \\
+    对数正态分布$LN(\mu,\sigma^2)$& $\frac{1}{\sqrt{2\pi}\sigma x}e^{-(\ln x-\mu)^{2}/2\sigma^{2}}$ & $\mu,\sigma^2$ & $T_1=\sum_{i=1}^{n}\ln x_i , T_2=\sum_{i=1}^{n} (\ln x_i)^2$ \\
+     \bottomrule
+    \end{tabular}
+\end{table}
+%TODO

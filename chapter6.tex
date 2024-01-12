@@ -1,0 +1,536 @@
+\chapter{参数估计}
+\section{点估计的概念与无偏性}
+\subsection{点估计及无偏性}
+\begin{definition}
+    设$X_1,X_2,\cdots,X_n$是来自总体$X$的样本，用于估计未知参数$\theta$的统计量$\hat{\theta}=\hat{\theta}(x_1, x_2 , \cdots,x_n)$称为$\theta$的估计量，或称为$\theta$的点估计，简称估计。
+\end{definition}
+\begin{definition}
+    设$\hat{\theta}=\hat{\theta}(x_1, x_2 , \cdots,x_n)$是$\theta$的一个估计，$\theta$的参数空间为$\Theta$，若对于任意$\theta\in\Theta$，有
+    $$
+        E_{\theta}(\hat{\theta})=\theta
+    $$
+    则称$\hat{\theta}$是$\theta$的无偏估计，否则称为有偏估计。
+\end{definition}
+
+对任一总体而言，样本均值是总体均值的无偏估计．当总体$k$阶矩存在时，样本$k$阶原点矩$a_k$是总体$k$阶原点矩$u_k$的无偏估计．但对$k$阶中心矩则不一样，譬如，样本方差$s_n^2$就不是总体方差$\sigma^2$的无偏估计。
+
+无偏性不具有不变性．即若$\hat{\theta}$是$\theta$的无偏估计，一般而言,其函数$g(\hat\theta)$ 不是$g(\theta)$的无偏估计，除非$g(\theta)$是$\theta$的线性函数。
+
+并不是所有的参数都存在无偏估计，当参数存在无偏估计时，我们称该参数是可估的，否则称它是不可估的。
+
+\begin{definition}
+    设$\theta_1 ,\theta_2$是$\theta$的两个无偏估计，如果对任意的$\theta \in \Theta$有
+    $$
+        \operatorname{Var}(\hat{\theta}_1) \leq \operatorname{Var}(\hat{\theta}_2)
+    $$
+    且至少有一个$\theta \in \Theta$使得上述不等号严格成立，则称$\hat{\theta}_1$比$\hat{\theta}_2$有效。
+\end{definition}
+
+
+\section{矩估计及相合性}
+\subsection{替换原理和矩阵估计}
+\begin{enumerate}
+    \item 用样本矩去替换总体矩，这里的矩可以是原点矩，也可以是中心矩。
+    \item 用样本矩的函数去替换总体矩的函数。
+          \begin{enumerate}
+              \item 在总体分布未知场合，可用矩法对一些参数作出估计，如
+                    \begin{itemize}
+                        \item 用样本均值$\overline{x}$估计总体均值$E(X)$
+                        \item 用样本方差$s_{n}^2$估计总体方差$\operatorname{Var}(X)$
+                        \item 用事件$A$出现的频率估计事件$A$发生的概率$p(A)$
+                        \item 用样本分位数估计总体分位数
+                    \end{itemize}
+              \item 在总体分布列或分布密度函数形式已知场合，在有关各阶矩存在的条件下，用“总体矩等于样本矩"列出矩方程（组），解之即得分布中未知参数的矩估计，其中尽量选用低阶矩。
+          \end{enumerate}
+\end{enumerate}
+\subsection{概率函数已知时未知参数的矩估计}
+\begin{table}[H]
+    \centering
+    \caption{常用分布的矩估计}
+    \begin{tabular}{c|c|c}
+        \toprule
+        分布   & 参数                  & 矩估计                                                                                                   \\
+        \midrule
+        二项分布 & $p$                 & $\frac{1}{n}\sum\limits_{i=1}^n x_i=\overline{x} $                                                    \\
+        泊松分布 & $\lambda$           & $\frac{1}{n}\sum\limits_{i=1}^n x_i = \overline{x}$                                                   \\
+        正态分布 & $\mu,\sigma^2$      & $\frac{1}{n}\sum\limits_{i=1}^n x_i=\overline{x},\frac{1}{n}\sum\limits_{i=1}^n (x_i-\overline{x})^2$ \\
+        指数分布 & $\lambda$           & $\frac{1}{\overline{x}},\frac{1}{s_n}$                                                                \\
+        均匀分布 & $\theta_1,\theta_2$ & $\overline{x}-\sqrt{3}s_n,\overline{x}+\sqrt{3}s_n$                                                   \\
+
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{相合性}
+\begin{definition}
+    设$\theta \in \Theta$为未知参数，$\hat{\theta}_n =\hat{\theta}_n(x_1, x_2, \cdots, x_n) $是$\theta$的一个估计量，$n$是样本容量，若对任何一个$\varepsilon > 0 $,有$$
+        \lim_{n \to \infty} P\{|\hat{\theta}_n - \theta| \geq \varepsilon \} = 0
+    $$
+    则称$\hat{\theta}_n$为参数$\theta$的相合估计。
+\end{definition}
+
+\begin{theorem}
+    设$\hat{\theta}=\hat{\theta}_n(x_1, x_2, \cdots, x_n)$是$\theta$的一个估计量，若
+    $$
+        \lim_{n \to \infty} E(\hat{\theta}_n) = \theta, \quad
+        \lim_{n \to \infty} \operatorname{Var}(\hat{\theta}_n) = 0
+    $$
+    则$\hat{\theta}_n$是$\theta$的相合估计。
+\end{theorem}
+\begin{theorem}
+    若$\hat{\theta}_{n_1},\hat{\theta}_{n_2},\cdots,\hat{\theta}_{n_k}$分别是$\theta_1 ,\theta_2,\cdots,\theta_k$的相合估计，$\eta=g(\theta_1 ,\theta_2,\cdots,\theta_k)$是$\theta_1 ,\theta_2,\cdots,\theta_k$的连续函数，则$\hat{\eta}_n=g(\hat{\theta}_{n_1},\hat{\theta}_{n_2},\cdots,\hat{\theta}_{n_k})$是$\eta$的相合估计。
+\end{theorem}
+
+\section{最大似然估计与EM算法}
+\subsection{最大似然估计}
+\begin{definition}
+    设总体的概率函数为$p(x;\theta),\theta \in \Theta$，其中$\theta$是一个未知参数或几个未知参数组成的参数向量,$\Theta$是参数空间，$x_1 ,x_2 ,\cdots,x_n$是来自该总体的样本，将样本的联合概率函数看成$\theta$的函数，用$L(\theta;x_1 ,x_2 ,\cdots,x_n)$表示，简记为$L(\theta)$，即
+    $$
+        L(\theta) = L(\theta;x_1 ,x_2 ,\cdots,x_n) = \prod_{i=1}^n p(x_i;\theta)
+    $$
+    $L(\theta)$称为样本的似然函数。如果某统计量$\hat{\theta}=\hat{\theta}_n(x_1, x_2, \cdots, x_n)$满足$L(\hat{\theta})=\max\limits_{\theta in \Theta}L(\theta)$，则称$\hat{\theta}$是$\theta$的最大似然估计，简记为MLE。
+\end{definition}
+如果$\hat{\theta}$是$\theta$的最大似然估计，则对任一函数$g(\theta)$,$g(\hat{\theta})$是其最大似然估计．该性质称为最大似然估计的\textbf{不变性}.
+
+
+\begin{table}[H]
+    \centering
+    \caption{常用分布的最大似然估计}
+    \begin{tabular}{c|c|c}
+        \toprule
+        分布   & 参数                  & 最大似然估计                                                                                   \\
+        \midrule
+        二项分布 & $p$                 & $\frac{1}{n}\sum\limits_{i=1}^n x_i$                                                     \\
+        泊松分布 & $\lambda$           & $\frac{1}{n}\sum\limits_{i=1}^n x_i$                                                     \\
+        正态分布 & $\mu,\sigma^2$      & $\frac{1}{n}\sum\limits_{i=1}^n x_i,\frac{1}{n}\sum\limits_{i=1}^n (x_i-\overline{x})^2$ \\
+        指数分布 & $\lambda$           & $\frac{1}{\overline{x}}$                                                                 \\
+        均匀分布 & $\theta_1,\theta_2$ & $x_{(1)},x_{(n)}$                                                                        \\
+
+        \bottomrule
+    \end{tabular}
+
+
+\end{table}
+
+
+\subsection{EM算法}
+\subsection{渐进正态性}
+
+\begin{definition}
+    参数$\theta$的相合估计$\hat{\theta}_n$称为渐进正态的，若存在趋于$0$的非负常数序列$\sigma_n(\theta)$，使得$\frac{\hat{\theta}_n-\theta}{\sigma_n(\theta)}$依分布收敛于标准正态分布。这时也称$\hat{\theta}_n$服从渐进正态分布$N(\theta,\sigma_n^2(\theta))$.记为$\hat\theta_n \sim AN(\theta,\sigma_n^2(\theta))$.$\sigma_n^2(\theta)$称为$\hat{\theta}_n$的渐进方差。
+\end{definition}
+\begin{theorem}
+    设总体$X$有密度函数$p(x;\theta),\theta \in \Theta,\Theta$为非退化区间，假定
+    \begin{enumerate}[(1)]
+        \item 对任意$x$，偏导数$\frac{\partial \ln p}{\partial \theta},\frac{\partial^2 \ln p}{\partial \theta^2},\frac{\partial^3 \ln p}{\partial \theta^3}$对所有$\theta \in \Theta$都存在。
+        \item $\forall \theta \in \Theta$,有
+              $$
+                  |\frac{\partial \ln p}{\partial \theta}|<F_1(x),
+                  |\frac{\partial^2 \ln p}{\partial \theta^2}|<F_2(x),
+                  |\frac{\partial^3 \ln p}{\partial \theta^3}|<F_3(x),
+              $$
+              其中函数$F_1(x),F_2(x),F_3(x)$满足
+              $$
+                  \int_{-\infty}^{+\infty}F_1(x)dx<\infty,
+                  \int_{-\infty}^{+\infty}F_2(x)dx<\infty,
+                  \sup\limits_{\theta \in \Theta} \int_{-\infty}^{+\infty}F_3(x)p(x;\theta)dx<\infty;
+              $$
+        \item $\forall \theta \in \Theta$,有$0< I(\theta)\equiv \int_{-\infty}^{\infty}(\frac{\partial \ln p}{\partial \theta})^2p(x;\theta)dx < \infty$
+    \end{enumerate}
+\end{theorem}
+
+\section{最小方差无偏估计}
+\subsection{均方误差}
+均方误差：
+\begin{equation}
+    MSE(\hat{\theta})=E(\hat{\theta}-\theta)^2
+\end{equation}
+注意到：
+$$
+    MSE(\hat\theta)=\operatorname{Var}(\hat\theta)+[E(\hat\theta)-\theta]^2
+$$
+
+\begin{definition}
+    设有样本$x_1,x_2,\cdots,x_n$，对待估计参数$\theta$，设有一个估计类，称$\hat{\theta}(x_1,x_2,\cdots,x_n)$是该估计类中$\theta$的一致最小均方误差估计，如果对该估计类中另外任意一个$\theta$的估计$\tilde{\theta}$,在参数空间$\Theta$上都有
+    $$
+        MSE_{\theta}(\hat{\theta}) \leq MSE_{\theta}(\tilde{\theta})
+    $$
+\end{definition}
+\subsection{一致最小方差无偏估计}
+\begin{definition}
+    对参数估计问题，设$\hat{\theta}$是$\theta$的一个无偏估计，如果对另外任意一个$\theta$的无偏估计$\tilde{\theta}$，在参数空间$\Theta$上都有
+    $$
+        \operatorname{Var}_{\theta}(\hat{\theta}) \leq \operatorname{Var}_{\theta}({\tilde{\theta})}
+    $$
+    则称$\hat{\theta}$是$\theta$的一致最小方差无偏估计，简记为$UMVUE$
+\end{definition}
+\begin{theorem}
+    设$X=(x_1,x_2,\cdots,x_n)$是来自某总体的一个样本，$\hat{\theta}=\hat{\theta}(X)$是$\theta$的一个无偏估计，$\operatorname{Var}(\hat{\theta})<\infty$。则$\hat{\theta}$是$\theta$的UMVUE的充要条件是，对于任意一个满足$E(\varphi(X))=0$和$\operatorname{Var}(\varphi(X))<\infty$的$\varphi(X)$,都有
+    $$
+        \operatorname{Cov}_{\theta}(\hat{\theta},\varphi)=0 , \forall \theta \in \Theta
+    $$
+\end{theorem}
+\subsection{充分性原则}
+\begin{theorem}
+    设总体概率函数是$p(x;\theta),x_1,\cdots,x_n$是其样本，$T=T(x_1,x_2,\cdots,x_n)$是$\theta$的充分统计量，则对$\theta$的任一无偏估计$\hat{\theta}=\hat{\theta}(x_1,x_2,\cdots,x_n)$,令$\tilde{\theta}=E(\hat{\theta}|T)$,则$\tilde{\theta}$也是$\theta$的无偏估计，且
+    $$
+        \operatorname{Var}(\tilde{\theta}) \leq \operatorname{Var}(\hat{\theta})
+    $$
+\end{theorem}
+考虑$\theta$的估计问题只需要在基于充分统计量的函数中进行即可，该说法对所有统计推断都是成立的，这便是所谓的\textbf{充分性原则}。
+\subsection{Cramer-Rao不等式}
+\begin{definition}
+    设总体的概率函数$p(x;\theta),\theta \in \Theta$满足下列条件：
+    \begin{enumerate}[(1)]
+        \item 参数空间$\Theta$是直线上的一个区间；
+        \item 支撑$S=\{x:p(x;\theta)>0\}$与参数$\theta$无关；
+        \item 导数$\frac{\partial }{\partial \theta}p(x;\theta)$对一切$\theta \in \Theta$都存在；
+        \item 对$p(x;\theta)$,积分与微分运算可交换次序，即
+              $$
+                  \frac{\partial }{\partial \theta} \int_{-\infty}^{\infty}p(x;\theta)dx = \int_{-\infty}^{\infty}\frac{\partial }{\partial \theta}p(x;\theta)dx
+              $$
+        \item 期望$E[\frac{\partial }{\partial \theta} \ln p(x;\theta)]^2$存在,
+              $$
+                  I(\theta)=E[\frac{\partial }{\partial \theta} \ln p(x;\theta)]^2
+              $$
+              为总体的费希尔信息量。
+    \end{enumerate}
+\end{definition}
+常用分布的费希尔信息量
+\begin{enumerate}
+    \item 二点分布$b(1,p)$的费希尔信息量 $I(p)=[p(1-p)]^{-1};$
+    \item 泊松分布$p(\lambda)$的费希尔信息量 $I(\lambda)=\lambda^{-1};$
+    \item 指数分布 $Exp(\lambda)$的费希尔信息量$I(\lambda)=\lambda^2;$
+    \item 正态分布 $N(\mu,1)$ 的费希尔信息量 $I(\mu)=1$ ;
+    \item 正态分布 $N(0,\sigma^2)$的费希尔信息量$I(\sigma^2)=\frac1{2\sigma^4};$
+    \item 正态分布 $N(\mu,\sigma^2)$的费希尔信息量(信息矩阵)$I(\mu,\sigma^2)=\begin{pmatrix}1/\sigma^2&0\\0&1/(2\sigma^4)\end{pmatrix}$
+
+\end{enumerate}
+
+
+\begin{theorem}[Cramer-Rao不等式]
+    设总体分布$p(x;\theta)$满足定义的条件，$x_1,x_2,\cdots,x_n$是来自该总体的样本，$T=T(x_1,x_2,\cdots,x_n)$是$g(\theta)$的任一个无偏估计，$g'(\theta)=\frac{\partial g(\theta)}{\partial \theta}$存在，且对$\Theta$中一切$\theta$,对
+    $$
+        g(\theta)=\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}T(x_1,x_2,\cdots,x_n)\prod\limits_{i=1}^{n} p(x_i;\theta)dx_1 \cdots dx_n
+    $$
+    的微商可在积分好下进行，即
+    \begin{equation}
+        \begin{split}
+            g'(\theta) & =\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}T(x_1,x_2,\cdots,x_n)\frac{\partial }{\partial \theta}(\prod\limits_{i=1}^{n} p(x_i;\theta))dx_1 \cdots dx_n                                          \\
+                       & =\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}T(x_1,x_2,\cdots,x_n)[\frac{\partial }{\partial \theta} \ln \prod\limits_{i=1}^{n} p(x_i;\theta)]\prod\limits_{i=1}^{n} p(x_i;\theta)dx_1 \cdots dx_n
+        \end{split}
+    \end{equation}
+    对离散总体，则将上述积分改为求和符号后，等式任然成立，则有
+    $$
+        \operatorname{Var}(T) \geq [g'(\theta)]^2 / (n I(\theta))
+    $$
+    称为克拉默-拉奥不等式。$[g'(\theta)]^2 / (n I(\theta))$称为$g(\theta)$的无偏估计的方差的下界，简称$g(\theta)$的$C-R$下界，特别，对$\theta$的无偏估计$\hat{\theta}$,有$\operatorname{Var}(\hat{\theta})\geq(n I(\theta))^{-1}$
+\end{theorem}
+注意，如果不等式中等号成立，则称$T=(x_1,x_2,\cdots,x_n)$是$g(\theta)$的\textbf{有效估计}，有效估计一定是UMVUE
+
+
+\section{贝叶斯估计}
+\subsection{统计推断的基础}
+\begin{enumerate}
+    \item 总体信息
+
+          总体信息即总体分布或总体所属分布族提供的信息
+    \item 样本信息
+
+          样本信息即抽取样本所得观测值提供的信息
+    \item 先验信息
+
+          如果我们把抽取样本看作做一次试验，则样本信息就是试验中得到的信息先验信息即是抽样（试验）之前有关统计问题的一些信息
+\end{enumerate}
+任一未知量$\theta$都可看作随机变量，可用一个概率分布去描述，这个分布称为先验分布
+\subsection{贝叶斯公式的密度函数形式}
+%TODO
+\begin{enumerate}[(1)]
+    \item 总体依赖于参数$\theta$的概率函数在经典统计中记为$p(x;\theta)$，它表示参数空间$\theta$中不同的$\theta$对应不同的分布．在贝叶斯统计中应记为$p(x;\theta)$ ，它表示在随机变量$\theta$取某个给定值时总体的条件概率函数．
+    \item 根据参数$\theta$的先验信息确定先验分布$\pi\left({\theta}\right)$
+    \item 从贝叶斯观点看，样本$X=(x_{1},x_{2},\cdots,x_{n})$的产生要分两步进行．首先设想从先验分布$\pi\left({\theta}\right)$产生一个个体$\theta_0$.这一步是“ 老天爷“ 做的，人们是看不到的，故用“ 设想”
+          二字。第二步从$p(X\mid\theta_{0})$中产生一组样本．这时样本$X=(x_{1},x_{2},\cdots,x_{n})$的联合条件概率
+          函数为
+          $$
+              p(X\mid\theta_{0})=p(x_{i},x_{2},\cdots,x_{n}\mid\theta_{0})=\prod_{i=1}^{n}p(x_{i}\mid\theta_{0}),
+          $$
+          这个分布综合了总体信息和样本信息．
+    \item 由于$\theta_0$是设想出来的，仍然是未知的，它是按先验分布$\pi\left({\theta}\right)$产生的。为把先验信息综合进去，不能只考虑$\theta_0$,对$\theta$的其他值发生的可能性也要加以考虑，故要用$\pi\left({\theta}\right)$进行综合这样一来，样本$X$和参数$\theta$的联合分布为$$
+              h\left(X,\theta\right)=p\left(X\mid\theta\right)\pi\left(\theta\right)
+          $$
+          这个联合分布把总体信息、样本信息和先验信息三种可用信息都综合进去了
+    \item 我们的目的是要对未知参数$\theta$作统计推断．在没有样本信息时，我们只能依据
+          先验分布对$\theta$作出推断．在有了样本观测值$X=({x_{1},x_{2},\cdots,x_{n}})$之后，我们应依据$h(X,\theta)$对$\theta$作出推断。若把$h(X,\theta)$作如下分解：
+          $$
+              h\left(X,\theta\right)=\pi\left(\theta\mid X\right)m\left(X\right)
+          $$
+          其中$m(X)$是$X$的边际概率函数
+          $$
+              m\left(X\right)=\int_{\Theta}h\left(X,\theta\right)\mathrm{d}\theta =\int_{\theta}P\left(X\mid\theta\right)\pi\left(\theta\right)\mathrm{d}\theta
+          $$
+          它与$\theta$无关，或者说$m(X)$中不含$\theta$的任何信息．因此能用来对$\theta$作出推断的仅是条件分布$\pi(\mathrm{~}\theta|X)$,它的计算公式是
+          $$
+              \pi(\theta|X)=\frac{h(X,\theta)}{m(X)}=\frac{p(X|\theta)\pi(\theta)}{\int_{\theta}p(X|\theta)\pi(\theta)\mathrm{d}\theta}
+          $$
+          这个条件分布称为$\theta$的后验分布，它集中了总体、样本和先验中有关$\theta$的一切信息．上式就是用密度函数表示的贝叶斯公式，它也是用总体和样本对先验分布$\pi(\theta)$作调整的结果，它要比$\pi(\theta)$更接近$\theta$的实际情况．
+\end{enumerate}
+\subsection{贝叶斯估计}
+由后验分布$\pi(\theta\mid X)$估计$\theta$有三种常用的方法：
+\begin{itemize}
+    \item 使用后验分布的密度函数最大值点作为$\theta$的点估计的最大后验估计．
+    \item 使用后验分布的中位数作为$\theta$的点估计的后验中位数估计．
+    \item 使用后验分布的均值作为$\theta$的点估计的后验期望估计．
+\end{itemize}
+用得最多的是后验期望估计，它一般也简称为贝叶斯估计，记为$\hat{\theta}_{B}$
+\subsection{共轭先验分布}
+\begin{definition}
+    设$\theta$是总体分布$p(x;\theta)$中的参数，$\pi(\theta)$是其先验分布，若对任意来自$p(x;\theta)$的样本观测值得到的后验分布$\pi(\theta\mid X)$与$\pi(\theta)$属于同一个分布族，则称该分布族是$\theta$的共轭先验分布（族）．
+\end{definition}
+
+\section{区间估计}
+\subsection{区间估计的概念}
+\begin{definition}
+    \label{def:chap6:definition_6_6_1}
+    设$\theta$是总体的一个参数，其参数空间为$\Theta,x_{1},x_{2},\cdots,x_{n}$是来自该总体
+    的样本，对给定的一个$\alpha(0<\alpha<1)$,假设有两个统计量$\hat{\theta}_{_L}=\hat{\theta}_{_L}(x_1,x_2,\cdots,x_n)$和$\hat{\theta}_{_U}=\hat{\theta}_{_U}(x_1,x_2,\cdots,x_n)$,若对任意的$\theta \in \Theta$,有
+    \begin{equation}
+        P_\theta(\hat{\theta}_L\leqslant\theta\leqslant\hat{\theta}_U)\geqslant1-\alpha
+    \end{equation}
+    则称随机区间$[\hat{\theta}_{L},\hat{\theta}_{U}]$为$\theta$的置信水平为$1-\alpha$的置信区间,或称$[\hat{\theta}_{L},\hat{\theta}_{U}]$是$\theta$的$1-\alpha$的置信区间,$\hat{\theta}_{L}$和$\hat{\theta}_{U}$分别称为$\theta$的（双侧）置信下限和置信上限．
+\end{definition}
+\begin{definition}
+    沿用定义\ref{def:chap6:definition_6_6_1}的记号，如对给定的$\alpha (0<\alpha<1 )$，对任意的$\theta \in  \Theta$，有
+    \begin{equation}
+        P_{_\theta}(\hat{\theta}_{_L}\leqslant\theta\leqslant\hat{\theta}_{_U})=1-\alpha
+    \end{equation}
+    则称$[\hat{\theta}_{L},\hat{\theta}_{U}]$为$\theta$的$1-\alpha $同等置信区间。
+
+\end{definition}
+
+\begin{definition}
+    设$\hat{\theta}_{L}=\hat{\theta}_{L}(x_{1},x_{2},\cdots,x_{n})$是统计量， 对给定的$\alpha\in(0,1)$和任意的$\theta \in \Theta$,有
+    \begin{equation}
+        P_\theta(\hat{\theta}_L\leqslant\theta)\geqslant1-\alpha,\quad\forall\theta\in\Theta
+    \end{equation}
+    则称$\hat{\theta}_{L}$是$\theta$的置信水平为$1-\alpha$的（单侧）置信下限．假如等号对一切$\theta \in \Theta$成立，则称$\hat{\theta}_L$为$\theta$的$1-\alpha$同等置信下限
+\end{definition}
+
+\begin{definition}
+    设$\hat{\theta}_{U}=\hat{\theta}_{U}(x_{1},x_{2},\cdots,x_{n})$是统计量， 对给定的$\alpha\in(0,1)$和任意的$\theta \in \Theta$,有
+    \begin{equation}
+        P_\theta(\hat{\theta}_U\geqslant \theta)\geqslant1-\alpha,\quad\forall\theta\in\Theta
+    \end{equation}
+    则称$\hat{\theta}_{U}$是$\theta$的置信水平为$1-\alpha$的（单侧）置信上限．假如等号对一切$\theta \in \Theta$成立，则称$\hat{\theta}_U$为$\theta$的$1-\alpha$同等置信上限
+\end{definition}
+
+\subsection{枢轴量法}
+构造未知参$\theta$的置信区间的最常用的方法是枢轴量法，其步骤可以概括为如下
+\begin{enumerate}[(1)]
+    \item 设法构造一个样本和$\theta$的函数$G=G(x_{1},x_{2},\cdots,x_{n},\theta)$使得$G$的分布不依赖于未知参数．一般称具有这种性质的$G$为枢轴量．
+    \item 适当地选择两个常数$c,d$，使对给定的$\alpha(0<\alpha<1)$，有
+          \begin{equation}
+              P(c\leqslant G\leqslant d)=1-\alpha
+          \end{equation}
+          在离散场合，上式等号改为大于等于($\geq$).
+    \item 假如能将$c\leq G \leq d$进行不等式等价变形化为$\hat{\theta}_{L}\leqslant\theta\leqslant\hat{\theta}_{U}$,则有
+          \begin{equation}
+              P_{\theta}(\hat{\theta}_{L}\leq\theta\leq\hat{\theta}_{U})=1-\alpha.
+          \end{equation}
+          这表明$[\hat{\theta}_{L},\hat{\theta}_{U}]$是$\theta$的$1-\alpha$同等置信区间.
+\end{enumerate}
+
+上述构造置信区间的关键在于构造枢轴量$G$，故把这种方法称为枢轴量法．枢轴量的寻找一般从$\theta$的点估计出发．而满足(6.6.5) 的c,d可以有很多，选择的目的是希望 (6.6.6) 中的平均长度$E_\theta(\hat{\theta}_U-\hat{\theta}_L)$尽可能短。
+
+假如可以找到这样的$c,d$使$E_\theta(\hat{\theta}_{U}-\hat{\theta}_{L})$达到最短当然是最好的，不过在不少场合很难做到这一点．故常这样选择$e$和$d$，使得两个尾部概率各为$\alpha/2$，即
+\begin{equation}
+    P_{\theta}(G <c)=P_{\theta}(G > d)=\alpha/2,
+\end{equation}
+这样得到的置信区间称为等尾置信区间实用的置信区间大都是等尾置信区间．
+
+\subsection{单个正态总体参数的置信区间}
+
+一、$\sigma$已知时$\mu$的置信区间
+
+给出了$\mu$的$1-\alpha$同等置信区间为$[\bar{x}-u_{1-\alpha/2}\sigma/\sqrt{n},\quad\bar{x}+u_{1-\alpha/2}\sigma/\sqrt{n}]$
+
+
+二、$\sigma$未知时$\mu$的置信区间
+
+$\mu$的$1-\alpha$同等置信区间为$[\bar{x}-t_{1-\alpha/2}(n-1)s/\sqrt{n},\quad\bar{x}+t_{1-\alpha/2}(n-1)s/\sqrt{n}]$
+
+三、$\mu$未知时$\sigma^2$的置信区间
+
+$\sigma^2$的置信区间为$\left[(n-1)s^{2}/\chi_{1-a/2}^{2}(n-1),(n-1)s^{2}/\chi_{a/2}^{2}(n-1)\right].$
+
+\begin{table}[H]
+    \centering
+    \caption {不同条件置信区间的估计}
+    \label{tab:chap6:table_1}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        估计值        & 条件           & 枢轴量                                                          & 置信区间                                                                                                                                   \\
+        \hline
+        $u$        & $\sigma^2$已知 & $\frac{\overline{x}-\mu}{\sigma/\sqrt{n}}{\sim}N(0,1)$       & $[\overline{x}-u_{1-\alpha/2}\sigma/\sqrt{n},\quad\overline{x}+u_{1-\alpha/2}\sigma/\sqrt{n}]$                                         \\
+        \hline
+        $u$        & $\sigma^2$未知 & $\frac{\sqrt{n}(\overline{x}-\mu)}s\sim t(n-1)$              & $[\overline{x}- t_{1-\alpha/2}(n-1)s/\sqrt{n},\overline{x}+t_{1-\alpha/2}(n-1)s/\sqrt{n}]$                                             \\
+        \hline
+        $\sigma^2$ & $u$未知        & $\frac{(n-1)s^2}{\sigma^2}\sim \chi^2(n-1)$                  & $[(n-1)s^{2}/\chi_{1-\alpha/2}^{2}(n-1),(n-1)s^{2}/\chi_{\alpha/2}^{2}(n-1)]$                                                          \\
+        \hline
+        $\sigma^2$ & $u$已知        & $\frac{1}{\sigma^2}\sum_{i=1}^{n}(x_i - u)^2 \sim \chi^2(n)$ & $ \left[\frac{\sum_{i=1}^{n}(x_i-u)^2}{\chi^2_{1-\frac{\alpha}{2}}},\frac{\sum_{i=1}^{n}(x_i-u)^2}{\chi^2_{\frac{\alpha}{2}}}\right] $ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{大样本置信区间}
+在有些场合，寻找枢轴量及其分布比较困难．在样本量充分大时，可用渐近分布来构造近似的置信区间，一个典型的例子是关于比例p的置信区间．
+设$x_1,x_2,\cdots,x_n$是来自二点分布$b(1,p)$的样本，现要求$p$的$1-\alpha$置信区间。由中心
+极限定理知，样本均值$\overline x$的渐近分布为$N(p,\frac{p(1-p)}{n})$,因此有
+$$
+    u=\frac{\overline{x}-p}{\sqrt{p(1-p)/n}}\dot{\sim}N\left(0,1\right).
+$$
+这个$u$可作为近似枢轴量，对给定$\alpha$，利用标准正态分布的$1-\alpha/2$分位数$u_{1-\frac{\alpha}{2}}$
+可得
+$$P\left(\left| \frac{\overline{x}-p}{\sqrt{p(1-p)/n}} \right|\le u_{1-a/2}\right)\approx1-\alpha$$
+由此可得$p$当n比较大的$1-\alpha$置信区间
+$$\left[\overline{x}-u_{1-\alpha/2}\sqrt{\frac{\overline{x}(1-\overline{x})}n},\quad\overline{x}+u_{1-\alpha/2}\sqrt{\frac{\overline{x}(1-\overline{x})}n}\right].$$
+
+
+
+\paragraph{其他总体下的置信区间}
+\begin{example}
+    设总体$X\sim e(1/\theta)$, $p.d.f$.为$f(x)=\frac1\theta e^{-\frac{1}{\theta} x}\ (x\geq0),x_1,\cdots,x_n$为取自$X$的样本，求$\theta$的置信水平为$1-\alpha$的置信区间。
+\end{example}
+注：$e(\frac{1}{\theta})$有如下性质
+
+设$X_1,\cdots,X_n$取自$e(1/\theta)$, 则
+$$
+    n\bar{x}=\sum X_i\sim Ga(n,1/\theta)
+$$
+$$
+    2n\bar{x}/\theta\sim Ga(n,\frac{1}{2})=\chi^2(2n).
+$$
+\begin{enumerate}
+    \item $X_1,\cdots,X_n \sim Ga(n,\frac{1}{\theta})$为充分统计量。
+    \item 取$G= \frac{2n\bar{x}}{\theta} \sim Ga(n,\frac{1}{2})=\chi^2(2n) $为枢轴量。
+    \item $P(\chi^2_{\frac{\alpha}{2}}(2n)\leq \frac{2n\pi}{\theta}) \leq \chi^2_{1-\frac{\alpha}{2}}(2n)=1-\alpha$
+\end{enumerate}
+有$\theta$的$1-\alpha$置信区间为
+$$
+    \left[ \frac{2n\bar{x}}{\chi^2_{1-\frac{\alpha}{2}}(2n)},\frac{2n\bar{x}}{\chi^2_{\frac{\alpha}{2}}(2n)} \right]
+$$
+
+若$x \sim e(\lambda)$,则$\lambda$的$1-\alpha$置信区间为
+$$
+    \left[\frac{\chi^2_{\frac{\alpha}{2}}(2n)}{2n\bar{x}},\frac{\chi^2_{1-\frac{1\alpha}{2}}(2n)}{2n\bar{x}} \right]
+$$
+
+\begin{example}
+    设$x_1,...,x_n$是来自泊松分布$P(\lambda)$的样本，证明当样本容量$n$较大时，$\lambda$的近似$1-\alpha$置信区间为
+    $$
+        \bar{x}+\frac1{2n}u_{1-\frac\alpha2}^2\pm\sqrt{\frac{\bar{x}}{n}u_{1-\frac\alpha2}^2+\frac1{4n^2}u_{1-\frac\alpha2}^4}
+    $$
+\end{example}
+枢轴量：$u \frac{\bar{x}-\lambda}{\sqrt{\frac{\lambda}{n}}} \xrightarrow{P} N(0,1)$
+
+注：进一步，此置信区间可以简化为
+$$
+    \bar{x}\pm u_{1-\frac\alpha2\sqrt{\frac{\bar{x}}n}}.
+$$
+
+\subsection{样本量的确定}
+\begin{example}
+    某传媒公司欲调查电视台某综艺节目收视率$p$，为使得$p$的$1-\alpha$置信区间长度不超过$2d_0$，问应至少调查多少用户？
+\end{example}
+\begin{solution}
+    这是关于二点分布比例$p$的置信区间问题，$p$的$1-\alpha$置信区间半径$u_{1-\alpha/2}\sqrt{\bar{x}(1-\bar{x})/n}$这是一个随机变量，但由于$\bar{x} \in (0,1)$所以对任意的观测值有${\bar{x}}(1-{\bar{x}})\leq0.5^{2}=0.25.$这也就是说$p$的$1 - \alpha $的置信区间半径不会超过$u_{1-\alpha/2}/(2\sqrt{n}).$现要求$p$的$1-\alpha$ 的置信区间半径不超过$d_0$,只需要$u_{1-\alpha/2}/(2\sqrt{n})\leq d_0|$即可，从而
+    $$
+        n\geqslant\left(\frac{u_{1-\alpha/2}}{2d_0}\right)^2.
+    $$
+\end{solution}
+\subsection{两个正态总体下的置信区间}
+
+一、$\mu_1 -\mu_2$的置信区间
+
+1. $\sigma_1^2$和$\sigma_2^2$已知时
+
+此时有$\overline{x}-\overline{y} \sim N\left(\mu_1-\mu_2,\frac{\sigma_1^2}m+\frac{\sigma_2^2}n\right)$,取枢轴量为
+$$
+    u=\frac{\overline{x}-\overline{y}-(\mu_{1}-\mu_{2})}{\sqrt{\frac{\sigma_{1}^{2}}{m}+\frac{\sigma_{2}^{2}}n}}\sim N(0,1)
+$$
+沿用前面多次用过的方法可以得到$u_1 - u_2$的$1-\alpha$置信区间为
+$$
+    \overline{x}-\overline{y}\pm u_{1-\alpha/2}\sqrt{\frac{\sigma_{1}^{2}}{m}+\frac{\sigma_{2}^{2}}{n}}
+$$
+
+2. $\sigma_{1}^{2}=\sigma_{2}^{2}=\sigma^{2}$未知时
+
+此时有
+$$
+    \bar{x}-\bar{y}\sim N\Big(\mu_1-\mu_2,\Big(\frac1m+\frac1n\Big)\sigma^2\Big), \frac{(m-1)s_x^2+\left(n-1\right)s_y^2}{\sigma^2}\sim X^2(m+n-2)
+$$
+由于${\bar{x}},{\bar{y}},s_{x}^{2},s_{y}^{2}$相互独立，故可构造如下服从$t$分布$t(m+n-2)$的枢轴量
+$$
+    t=\sqrt{\frac{mn(m+n-2)}{m+n}}\frac{\overline{x}-\overline{y}-(\mu_{1}-\mu_{2})}{\sqrt{(m-1)s_{x}^{2}+(n-1)s_{y}^{2}}}\sim t(m+n-2).
+$$
+记$s_w^2=\frac{\left(m-1\right)s_x^2+\left(n-1\right)s_y^2}{m+n-2}$，则$u_1-u_2$的$1-\alpha$置信区间为
+$$
+    \overline{x}-\overline{y}\pm\sqrt{\frac{m+n}{mn}}s_{w}t_{1-a/2}(m+n-2)
+$$
+
+3. $\sigma_{2}^{2}/\sigma_{1}^{2}=c$已知时
+此时的处理方法与2中完全类似，只需注意到
+$$
+    \bar{x}-\bar{y}\sim N\left(\mu_{1}-\mu_{2},\frac{\sigma_{1}^{2}}{m}+\frac{\sigma_{2}^{2}}{n}\right)=N\left(\mu_{1}-\mu_{2},\sigma_{1}^{2}\left(\frac{1}{m}+\frac{c}{n}\right)\right)
+$$
+$$
+    \frac{\left(m-1\right)s_{x}^{2}+\left(n-1\right)s_{y}^{2}/c}{\sigma_{1}^{2}}=\frac{\left(m-1\right)s_{x}^{2}}{\sigma_{i}^{2}}+\frac{\left(n-1\right)s_{y}^{2}}{\sigma_{2}^{2}}\sim\chi^{2}(m+n-2)
+$$
+由于$\overline{x},\overline{y},s_{x}^{2},s_{y}^{2}$相互独立，仍可构造如下服从$t$分布$t(m+n-2)$的枢轴量
+$$
+    t=\frac{\overline{x}-\overline{y}-(\mu_{1}-\mu_{2})}{\sqrt{(m-1)s_{*}^{2}+(n-1)s_{,}^{2}/c}}\sqrt{\frac{mn(m+n-2)}{mc+n}}\sim t(m+n-2)
+$$
+记$s_w^2=\frac{(m-1)s_x^2+(n-1)s_y^2/c}{m+n-2}$，则$u_1-u_2$的$1-\alpha$在置信区间为
+$$
+    \overline{x}-\overline{y}\pm\sqrt{\frac{mc+n}{mn}}s_{w}t_{1-a/2}(m+n-2)
+$$
+
+4. 当$m$和$n$都很大时的近似置信区间
+
+若对$\sigma_1^2 ,\sigma_2^2$没有什么信息，当$m$,$n$都很大时，由中心极限定理知
+$$
+    \frac{\overline{x}-\overline{y}-(\mu_{1}-\mu_{2})}{\sqrt{\frac{s_{x}^{2}}{m}+\frac{s_{y}^{2}}{n}}}\dot\sim N(0,1)
+$$
+由此可给出$u_1-u_2$的$1-\alpha$近似置信区间为
+$$
+    \overline{x}-\overline{y}\pm u_{1-\alpha/2}\sqrt{\frac{s_{x}^{2}}{m}+\frac{s_{y}^{2}}{n}.}
+$$
+
+5. 一般情况下的近似置信区间
+
+这里介绍一种近似方法：令$s_{0}^{2}=s_{x}^{2}/m+s_{y}^{2}/n$,取近似枢轴量
+$$
+    T=\left[\begin{array}{cc}\overline{x}-\overline{y}-(\mu_1-\mu_2)\end{array}\right]/s_0
+$$
+此时$T$不服从$N(0,1)$，但近似服从自由度为$l$ 的$t$分布，其中$l$由公式
+$$
+    l=\frac{s_0^4}{\frac{s_x^4}{m^2(m-1)}+\frac{s_y^4}{n^2(n-1)}}
+$$
+决定，$l$一般不为整数，可以取与$l$最接近的整数代替之．于是，近似地有$T \sim t(l) $,从而可得$u_1-u_2$的$1-\alpha$近似置信区间为
+$$
+    \overline{x}-\overline{y}\pm s_0t_{1-\alpha/2}(l)
+$$
+
+二、$\sigma_1^2/\sigma_2^2$的置信区间
+
+由于$\left(m-1\right)s_{x}^{2}/\sigma_{1}^{2}\sim{\cal X}^{2}\left(m-1\right),\left(n-1\right)s_{y}^{2}/\sigma_{2}^{2}\sim{\cal X}^{2}\left(n-1\right)$,且$s_x^2,s_y^2$相互独立，故可仿照$F$变量构造如下枢轴量：
+$$
+    F=\frac{s_{x}^{2}/\sigma_{1}^{2}}{s_{y}^{2}/\sigma_{~2}^{2}}\sim F(m-1,n-1)
+$$
+对给定的置信水平$1-\alpha$ ，由
+$$
+    P\Bigg(F_{\alpha/2}(m-1,n-1)\leqslant\frac{s_{x}^{2}}{s_{y}^{2}}\cdot\frac{\sigma_{2}^{2}}{\sigma_{1}^{2}}\le F_{1-\alpha/2}(m-1,n-1)\Bigg)=1-\alpha
+$$
+经不等式变形即给出$\sigma_1^2/\sigma_2^2$的如下的$1-\alpha$置信区间:
+$$
+    \left[\frac{s_{x}^{2}}{s_{y}^{2}}\cdot\frac{1}{F_{1-a/2}(m-1,n-1)},\quad\frac{s_{x}^{2}}{s_{y}^{2}}\cdot\frac{1}{F_{a/2}(m-1,n-1)}\right]
+$$

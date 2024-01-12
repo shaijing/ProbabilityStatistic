@@ -1,0 +1,88 @@
+\chapter{方差分析与回归分析}
+% \section{方差分析}
+% \section{多重比较}
+% \section{方差性检验}
+\setcounter{section}{3}
+\section{一元线性回归}
+\subsection{变量间的两类关系}
+回归分析处理的是变量与变量间的关系．变蜇间常见的关系有两类：一类称为\textbf{确定性关系}：这些变量间的关系是完全确定的，可以用函数$y=f(x)$来表示，$x$ （可以是向量）给定后，$y$的值就唯一确定了．另一类称为\textbf{相关关系}： 变量间有关系，但是不能用函数来表示.
+\subsection{一元线性回归模型}
+设$y$与$x$间有相关关系，称$x$为自变量（预报变量），$y$为因变量（响应变量），在知道$x$取值后，$y$的取值并不是确定的，它是一个随机变量，因此有一个分布，这个分布是在知道$x$的取值后$Y$的条件密度函数$p(y|x)$，我们关心的是$y$的均值$E(Y|x)$,它是$x$的函数，这个函数是确定性的：
+\begin{equation}
+    f(x)=E\left(Y|x\right)=\int_{-\infty}^{\infty}yp(y|x)\mathrm{d}y.
+\end{equation}
+这便是$y$关于$x$的回归函数一条件期望，也就是我们要寻找的相关关系的表达式．
+
+以上的叙述是在$x$与$y$均为随机变量场合进行的，这是一类回归问题．实际中还有第二类回归问题，其自变量$x$是可控变量（一般变量），只有$y$是随机变量，它们之间的相关关系可用下式表示：
+$$
+    y = f(x)+\varepsilon
+$$
+其中$\varepsilon$是随机误差，一般假设$\varepsilon \sim N(0,\sigma^2)$.由于$\varepsilon$的随机性，导致$y$是随机变量．
+
+常用的一元线性回归的统计模型
+
+\begin{equation}
+    \begin{cases}
+        y_i=\beta_0+\beta_1x_i+\varepsilon_i,\quad i=1,2,\cdots,n, \\
+        \text{各 }\varepsilon_i\text{独立同分布},\text{其分布为}N(0,\sigma^2).
+    \end{cases}
+\end{equation}
+由数据$(x_{i},y_{i})(i=1,2,\cdots,n)$可以获得$\beta_0,\beta_1$的估计$\hat{\beta}_0,\hat{\beta}_1$，称
+\begin{equation}
+    \hat{y}=\hat{\beta}_0+\hat{\beta}_1x
+\end{equation}
+为$y$关于$x$的经验回归函数，简称为回归方程，其图形称为回归直线．给定$x_0$后，称$\hat{y}_0=\hat{\beta}_0+\hat{\beta}_1x_0$为回归值．
+
+\subsection{回归系数的最小二乘估计}
+\subsection{回归方程的显著性检验}
+在使用回归方程以前，首先应对问归方程是否有意义进行判断.什么叫回归方程有意义呢？我们知道，建立回归方程的目的是寻找$y$的均值随$x$变化的规律，即找出回归方程$E(y)=\beta_0+\beta_1x$.如果$\beta_1=0$,那么不管$x$如何变化，$E(y)$ 不随$x$的变化作线性变化，那么这时求得的一元线性回归方程就没有意义，或称回归方程不显著.如果$\beta_{1}\neq 0$,那么当$x$变化时，$E(y)$随$x$的变化作线性变化，那么这时求得的回归方程就有意义， 或称回归方程是显著的.
+
+综上，对回归方程是否有意义作判断就是要对如下的检验问题作出判断：
+\begin{equation}
+    \label{eq:8.4.10}
+    H_0:\beta_1=0\quad \text{vs}\quad H_1:\beta_1\neq 0.
+\end{equation}
+拒绝$H_0$表示回归方程是显著的．
+
+\paragraph{一、F检验}
+采用方差分析的思想，我们从数据出发研究各$y_i$不同的原因.首先引入记号并称$\hat{y}_{i}=\hat{\beta}_{_0}+\hat{\beta}_{1}x_{i}$为$x_i$处的回归值，又称$y_i-\hat{y}_i$为$x_i$处的\textbf{残差}。
+
+数据总的波动用\textbf{总偏差平方和}
+$$S_{T}=\sum(y_{i}-\overline{y})^{2}=l_{yy},$$
+表示.引起各$y_i$不同的原因主要有两类因素：其一是$H_0$可能不真，即$\beta_1 \neq 0$，从而$E(y)=\beta_0+\beta_1 x$随$x$变化而变化，即在每一个$x$的观测值处的回归值不同，其波动用\textbf{回归平方和}
+\begin{equation}
+    S_R = \sum (\hat{y}_i - \overline{y})^2
+\end{equation}
+表示。其二是其他一切因素，包括随机误差、$x$对$E(y)$的非线性影响等，这样在得到回归值以后，$y$的观测值与回归值之间还有差距，这可用\textbf{残差平方和}
+\begin{equation}
+    S_e = \sum (y_i - \hat{y}_i)^2
+\end{equation}
+表示。
+
+
+平方和分解式:
+\begin{equation}
+    S_T = S_R + S_e
+\end{equation}
+
+\begin{theorem}
+    设$y_1,y_2,\cdots,y_n$相互独立，且$y_i\sim N(\beta_0+\beta_1x_i,\sigma^2),i=1,2,\cdots,n$,则在上述记号下，有
+    \begin{enumerate}
+        \item $S_{e}/\sigma^{2} \sim \chi^{2}( n-2)$;
+        \item 若$H_{0}$成立，则有$S_{R}/\sigma^{2} \sim \chi^{2}(1)$
+        \item $S_R$与$S_e,\bar{y}$独立(或$\hat{\beta}_1$与$S_e,\bar{y}$独立).
+    \end{enumerate}
+
+\end{theorem}
+如同方差分析那样，我们可以考虑采用如下$F$作为检验问题\eqref{eq:8.4.10}的检验统计量：
+$$F=\frac{S_{R}}{S_{e}/(n-2)}.$$
+
+在$\beta_{1}=0$ 时，$F\sim F(f_{R},f_{e})$,其中$f_{R}=1,f_{e}=n-2$.对于给定的显著性水平$\alpha$,其拒绝域为
+$$
+F\geq F_{1-\alpha}(1,n-2).
+$$
+整个检验也可列成一张方差分析表，检验也可用$p$值进行，
+
+% \subsection{估计与预测}
+
+% \section{一元非线性回归}

@@ -1,0 +1,175 @@
+\chapter{大数定理与中心极限定理}
+\section{随机变量序列的两种收敛性}
+\subsection{依概率收敛}
+\begin{definition}
+    设$\{X_n\}$是一列随机变量，$X$为一随机变量，如果对于任意的$\varepsilon>0$，有$\mathop {\lim }\limits_{n \to \infty } P( \\| {{X_n} - X} | \geqslant \varepsilon )  = 0$,则称$\{X_n\}$依概率收敛于$X$，记作$X_n \xrightarrow{P} X$
+\end{definition}
+
+\begin{theorem}
+    设$\{X_n\}$$\{Y_n\}$为两个随机变量序列，$a,b$是两个常数
+        如果 ${X_n}\mathop  \to \limits^P a,{Y_n}\mathop  \to \limits^P b$,则有
+    \begin{enumerate}
+        \item ${X_n}{\text{ + }}{Y_n}\mathop  \to \limits^P a{\text{ + }}b$
+        \item ${X_n}{Y_n}\mathop  \to \limits^P ab$
+        \item ${X_n} \div {Y_n}\mathop  \to \limits^P a \div b(b \ne 0)$
+    \end{enumerate}
+
+\end{theorem}
+
+推广:如果$X_n \xrightarrow{P} X$，$Y_n \xrightarrow{P} Y$,则有
+\begin{enumerate}
+    \item $X_n +Y_n \xrightarrow{P} X+Y$
+    \item $X_n \times Y_n\xrightarrow{P} X \times Y$
+\end{enumerate}
+
+\subsection{按分布收敛，弱收敛}
+\begin{definition}
+    设随机变量$X,{X_1},{X_2},...$的分布函数分别为$F(x),{F_1}(x),{F_2}(x),\cdots$，若对于$F(x)$的任意连续点$x$,都有$\mathop {\lim }\limits_{n \to \infty } {F_n}(x) = F(x)$,则称$\left\{ {{F_n}(x)} \right\}$弱收敛于$F(x)$，记作${F_n}(x) \xrightarrow{w} F(x)$，也称相应的随机变量序列$\{X_n\}$按分布收敛于$X$，记作$X_n \xrightarrow{L} X$
+\end{definition}
+
+\begin{theorem}
+    ${X_n}\mathop  \to \limits^P X \Rightarrow {X_n}\mathop  \to \limits^L X$，但反之不成立
+\end{theorem}
+
+\begin{theorem}
+    ${X_n}\mathop  \to \limits^P a \Leftrightarrow {X_n}\mathop  \to \limits^L a$
+\end{theorem}
+
+\section{特征函数}
+\subsection{特征函数的定义}
+
+\begin{definition}
+    设$X$是一随机变量，称$\varphi (t) = E(e^{itX})$为$X$的特征函数
+\end{definition}
+
+注意：
+\begin{enumerate}
+    \item 因为$|e^{itX}|=1$，所以$\varphi (t)$总是存在
+    \item ${e^{itx}} = \cos (tx) + i\sin (tx)$
+    \item 当$X$是离散型随机变量时，分布列为${p_k} = P(X = {x_k})$,则$\varphi (t) = \sum\limits_{k = 1}^\infty  {{p_k}{e^{it{x_k}}}} $
+    \item 当$X$是连续型随机变量时，密度函数为$p(x)$,则$\varphi (t) = \int_{ - \infty }^{ + \infty } {{p(x){e^{itx}}} dx} $
+\end{enumerate}
+
+常见分布的特征函数
+\begin{itemize}
+    \item 单点分布
+          $$P(X = a) = 1,\varphi (t) = {e^{ita}}$$
+    \item 两点分布
+          $$P(X = x) = {p^x}{(1 - p)^{1 - x}}\;x = 0,1.\;\quad \varphi (t) = p{e^{it}} + q$$
+    \item 二项分布
+          $$P(X = k) = C_n^k{p^k}{(1 - p)^{n - k}},k = 0,1,...n\quad \;\varphi (t) = {(p{e^{it}} + q)^n}$$
+    \item 泊松分布
+          $$P(X = k) = \frac{{{\lambda ^k}{e^{ - \lambda }}}}{{k!}},k = 0,1,...\quad \;\varphi (t) = {e^{\lambda ({e^{it}} - 1)}}$$
+    \item 均匀分布
+          $$p(x) = \frac{1}{{b - a}}\;(a \leqslant x \leqslant b)\quad \;\quad \quad \varphi (t) = \frac{{{e^{itb}} - {e^{ita}}}}{{it(b - a)}}$$
+    \item 指数分布
+          $$p(x) = \lambda {e^{ - \lambda x}}(x > 0)\quad \;\quad \varphi (t) = {(1 - \frac{{it}}{\lambda })^{ - 1}}$$
+    \item 标准正态分布
+          $$p(x) = \frac{1}{{\sqrt {2\pi } }}{e^{ - \frac{1}{2}{x^2}}}\quad \varphi (t) = {e^{ - \frac{1}{2}{t^2}}}$$
+    \item 正态分布
+          $$N(\mu ,{\sigma ^2}),\;\varphi (t) = {e^{i\mu t - \frac{1}{2}{\sigma ^2}{t^2}}}$$
+
+\end{itemize}
+
+\subsection{特征函数的性质}
+\begin{enumerate}
+    \item $\left| {\varphi (t)} \right| \leqslant \varphi (0) = 1$
+    \item $\varphi ( - t) = \overline {\varphi (t)} $
+    \item 若$Y=aX+b$，则${\varphi _Y}(t) = {e^{ibt}}{\varphi _X}(at)$
+    \item 若$X$与$Y$独立，则${\varphi _{X + Y}}(t) = {\varphi _X}(t){\varphi _Y}(t)$
+    \item 若$E({X^l})$存在，则$\varphi (t)$可$l$次求导，且${\varphi ^{(k)}}(0) = {i^k}E({X^k})\quad (1 \leqslant k \leqslant l)$
+          特别的，$E(X) = \frac{1}{i}\varphi '(0),Var(X) =  - \varphi ''(0) + {[\varphi '(0)]^2}$
+\end{enumerate}
+\begin{theorem}[一致连续性]
+    随机变量$X$的特征函数$ \varphi (t)$在整个实数轴上一致连续
+\end{theorem}
+
+\begin{theorem}[非负定性]
+    随机变量$X$的特征函数$\varphi (t)$是非负定的，即对任意正整数$n$及$n$个实数${t_1},{t_2},...,{t_n}$和$n$个复数$z_1,z_2,...,z_n$,有$\sum\limits_{k = 1}^n {\sum\limits_{j = 1}^n {\varphi ({t_k} - } } {t_j}){z_k}{\bar z_j} \geqslant 0$
+\end{theorem}
+
+\subsection{特征函数唯一决定分布函数}
+\begin{theorem}[逆转公式]
+    设$F(x)$和$\varphi (t)$分别是随机变量$X$的分布函数和特征函数，则对于$F(x)$的任意两个连续点${x_1} < {x_2}$,有$F({x_2}) - F({x_1}) = \mathop {\lim }\limits_{T \to \infty } \frac{1}{{2\pi }}\int_{ - T}^T {\frac{{{e^{ - it{x_1}}} - {e^{ - it{x_2}}}}}{{it}}} \varphi (t)dt$
+\end{theorem}
+
+\begin{theorem}
+    随机变量的分布函数由其特征函数唯一决定
+\end{theorem}
+
+\begin{definition}
+    若$X$为连续型随机变量，密度函数为$p(x)$,特征函数为$\varphi (t)$,若$\int_R {\left| {\varphi (t)} \right|} dt < \infty $,则$p(x) = \frac{1}{{2\pi }}\int_{ - \infty }^\infty  {{e^{ - itx}}} \varphi (t)dt$
+
+\end{definition}
+
+
+\begin{theorem}[判断弱收敛]
+    $X_n \xrightarrow{L} X \Leftrightarrow \varphi_{x_n}(t) \rightarrow \varphi_x(t) $
+\end{theorem}
+
+\section{大数定律}
+\subsection{伯努利大数定律}
+\begin{definition}
+    设$n_A$是$n$次独立重复试验中事件$A$发生的次数，p是事件$A$在每次试验中发生的概率，那么对于任意$\varepsilon > 0$，有$\mathop {\lim }\limits_{n \to \infty } P\left( {\left| {\frac{{{n_A}}}{n} - p} \right| < \varepsilon } \right)=1$或$\mathop {\lim }\limits_{n \to \infty } P\left( {\left| {\frac{{{n_A}}}{n} - p} \right| \ge \varepsilon } \right)=0$
+\end{definition}
+
+\subsection{常用的几个大数定律}
+\paragraph{大数定律的一般形式}
+设随机变量${X_1},{X_2}, \cdots ,{X_n}, \cdots $相互独立，且具有相同的数学期望和方差：$E({X_k}) = \mu $,$Var({X_k}) = {\sigma ^2}(k = 1,2, \cdots )$,作前$n$个随机变量的算术平均$\bar X = \frac{1}{n}\sum\limits_{k = 1}^n {{X_k}} $,则对于$\forall \varepsilon$有，$$\mathop {\lim }\limits_{n \to \infty } P( |\frac{1}{n}\sum\limits_{k = 1}^n {{X_k}}  - \frac{1}{n}\sum\limits_{k = 1}^n {E({X_k})} | < \varepsilon )  = 1$$
+
+
+\begin{theorem}[切比雪夫大数定律]
+    设$\{X_n\}$为两两不相关的随机变量序列，若它们的方差都存在且有公共上界，即$Var({X_i}) \leqslant c,(i = 1,2,...)$,则$\{X_n\}$服从大数定律。
+\end{theorem}
+
+\begin{theorem}[马尔可夫大数定律]
+    对于随机变量序列$\{X_n\}$,若$\frac{1}{{{n^2}}}Var(\sum\limits_{i = 1}^n {{X_i}} ) \to 0$,则$\{X_n\}$服从大数定律。
+
+\end{theorem}
+
+\begin{theorem}[辛钦大数定律]
+    设随$\{X_n\}$为一独立同分布的机变量序列，若$X_i$的数学期望存在，则$\{X_n\}$服从大数定律。
+\end{theorem}
+
+\section{中心极限定理}
+\subsection{独立随机变量和}
+\begin{definition}
+    设$\{X_n\}$为独立随机变量序列，记其和为$Y_n=\sum_{i=1}^n x_i$
+\end{definition}
+
+
+\subsection{独立同分布下的中心极限定理}
+
+\begin{theorem}[林德伯格—列维中心极限定理]
+    设随机变量${X_1},{X_2}, \cdots ,{X_n}, \cdots $,相互独立,服从同一分布，且具有数学期望和方差：$E({X_k}) = \mu $,$Var({X_k}) = {\sigma ^2} > 0\;(k = 1,2, \cdots )$,则随机变量之和的标准化变量${Y_n^*} = \frac{{\sum\limits_{k = 1}^n {{X_k}}  - E\left( {\sum\limits_{k = 1}^n {{X_k}} } \right)}}{{\sqrt {D\left( {\sum\limits_{k = 1}^n {{X_k}} } \right)} }}=\frac{{\sum\limits_{k = 1}^n {{X_k}}  - n\mu }}{{\sigma \sqrt n }}$的分布函数${F_n}(x)$对于任意$x$满足$$\mathop {\lim }\limits_{n \to \infty } {F_n}(x) = \mathop {\lim }\limits_{n \to \infty } P\left\{ {\frac{{\sum\limits_{k = 1}^n {{X_k}}  - n\mu }}{{\sigma \sqrt n }} \leqslant x} \right\}$$$$ = \int_{ - \infty }^x {\frac{1}{{\sqrt {2\pi } }}{{\text{e}}^{ - \frac{{{t^2}}}{2}}}{\text{d}}t = \Phi (x)} $$
+\end{theorem}
+
+定理表明 当$n \to \infty $,随机变量序列$Y$的分布函数收敛于标准正态分布的分布函数
+
+\subsection{二项分布的正态近似}
+\begin{theorem}[德莫佛－拉普拉斯中心极限定理]
+    设$n$重伯努利试验中，事件$A$在每次试验中出现的概率为$p(0 < p < 1)$，记$S_n$为$n$次试验中事件$A$出现的次数，且记$Y_n^*={\frac{{S_n - np}}{{\sqrt {npq} }}}$,则对任意实数$y$有
+    $$\mathop {\lim }\limits_{n \to \infty } P(Y_n^* \leqslant y)=\int_{ - \infty }^x {\frac{1}{{\sqrt {2{\pi }} }}{{\text{e}}^{ - \frac{{{t^2}}}{2}}}{\text{d}}t = \Phi (y).} $$
+
+\end{theorem}
+
+Note:因为二项分布是离散分布，正态分布是连续分布，所以近似计算中应稍作修正，以提高精度
+$$P(k_1 \leqslant \eta _n \leqslant k_2) = P(k_1 - 0.5 < \eta _n < k_2 + 0.5)$$$$ \approx \Phi(\frac{k_1 + 0.5-np}{\sqrt{npq} })-\Phi(\frac{k_2 - 0.5-np}{\sqrt{npq} })$$
+
+$$P(S_n=k)=P(k-0.5 < S_n < k+0.5)$$
+
+中心极限定理的应用
+\begin{itemize}
+    \item 已知n和y，求概率
+    \item 已知n和概率，求y
+    \item 已知概率和y，求n
+\end{itemize}
+
+\subsection{独立不同分布下的中心极限定理}
+\begin{theorem}[林德伯格中心极限定理]
+    设$\{X_n\}$为独立随机变量序列，若任对$\tau > 0$，有$$\mathop {\lim }\limits_{n \to \infty } \frac{1}{{{\tau ^2}B_n^2}}\sum\limits_{i = 1}^n {\int_{\left| {x - {\mu _i}} \right| > \tau {B_n}} {{{(x - {\mu _i})}^2}{p_i}(x)} } dx = 0$$则$$\mathop {\lim }\limits_{n \to \infty } P\left\{ {\frac{1}{{{B_n}}}\sum\limits_{i = 1}^n {({X_i} - {\mu _i})}  \leqslant x} \right\} = \Phi (x)$$
+\end{theorem}
+
+\begin{theorem}[李雅普诺夫中心极限定理]
+    设$\{X_n\}$为独立随机变量序列，若存在$\delta>0$，满足$$\mathop {\lim }\limits_{n \to \infty } \frac{1}{{B_n^{2 + \delta }}}\sum\limits_{i = 1}^n {E\left( {{{\left| {{X_i} - {\mu_i }} \right|}^{2 + \delta }}} \right)}  = 0$$则$$\mathop {\lim }\limits_{n \to \infty } P\left\{ {\frac{1}{{{B_n}}}\sum\limits_{i = 1}^n {({X_i} - {\mu _i})}  \leqslant x} \right\} = \Phi (x)$$
+\end{theorem}

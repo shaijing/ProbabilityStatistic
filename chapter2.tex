@@ -1,0 +1,409 @@
+\chapter{随机变量及其分布}
+\section{随机变量及其分布}
+\subsection{随机变量的概念}
+\begin{definition}
+    设$E$是随机试验，它的样本空间是$S=\{e\}$,如果对于每一个$e\in S$,都有唯一的实数值函数$X(e)$与之对应，这样就得到了一个定义在样本空间$S$上的实值单值函数$X(e)$,称$X(e)$为随机变量。
+\end{definition}
+
+随机变量的分类
+\begin{itemize}
+    \item 离散型：随机变量取有限个或可列个值，叫做离散型随机变量。
+    \item 连续型：随机变量所取的可能值可以连续地充满某个区间,叫做连续型随机变量。
+\end{itemize}
+
+\subsection{随机变量的分布函数}
+\begin{definition}
+    设$X$是一个随机变量，对于任意实数$x$，称$F(x)=P(X\leq x)$为随机变量$X$的分布函数，记为$X \sim F(X)$或$F_X(x)$
+\end{definition}
+
+\begin{property} 分布函数的性质
+    \begin{enumerate}
+        \item 单调性 $F({x_1}) \leqslant F({x_2}),\quad ({x_1} < {x_2})$
+        \item 有界性 $0 \leqslant F(x) \leqslant 1,\quad x \in ( - \infty ,\infty )$
+              $F( - \infty ) = \mathop {\lim }\limits_{x \to  - \infty } F(x) = 0,F(\infty ) = \mathop {\lim }\limits_{x \to \infty } F(x) = 1$
+        \item 右连续性 $\mathop {\lim }\limits_{x \to x_0^+} F(x) = F(x_0),\quad {x_0} \in ( - \infty ,\infty )$
+    \end{enumerate}
+
+\end{property}
+
+主要分式
+\begin{itemize}
+    \item $P(a < x \leq b)=F(b)-F(a)$
+    \item $P(x=a)=F(a)-F(a-0)$
+    \item $P(x>a)=1-F(a)$
+    \item $P(a \leq x \leq b)=F(b)-F(a-0)$
+    \item $P(a < x < b ) =F(b-0)-F(a)$
+    \item $F(x)$在$a,b$连续时，有$F(a-0)=F(a),F(b-0)=F(b)$
+\end{itemize}
+
+\subsection{离散随机变量的概率分布列}
+\begin{definition}
+    设$X$是一个离散随机变量，如果$X$的所有可能取值为$x_1,x_2,\cdots,x_n,\cdots$,则称$X$取$x_i$的概率$p_1,p_2,\cdots,p_n,\cdots \quad p_i=p(x_i)=P(X=x_i)$为$X$的概率分布列，简称分布列，记为$X \sim \{p_i\}$
+\end{definition}
+\begin{property} 分布列的基本性质
+    \begin{enumerate}
+        \item 非负性 $p_i \geqslant 0,\quad i=1,2,\cdots$
+        \item 正则性 $\sum\limits_{i = 1}^\infty  {{p_i}}  = 1$
+    \end{enumerate}
+\end{property}
+以上是判断某个数列是否可能成为分布列的充要条件。
+
+\subsection{连续随机变量的概率密度函数}
+\begin{definition}
+    设随机变量的分布函数为$F(x)$,如果存在非负可积函数$f(x)$,使对于任意实数$x$有$F(x) = \int_{ - \infty }^x {f(t)dt,} $,则称$f(x)$为$X$的概率密度函数，简称密度函数或密度。
+\end{definition}
+
+\begin{property} 密度函数的性质
+    \begin{enumerate}
+        \item 非负性 $f(x) \geqslant 0$
+        \item 正则性 $\int_{ - \infty }^\infty  {f(x)dx}  = 1$,含有$f(x)$的可积性。
+        \item $P( {x_1} < X \leqslant {x_2})  = F({x_2}) - F({x_1})$
+    \end{enumerate}
+\end{property}
+
+连续随机变量的性质
+\begin{enumerate}
+    \item  连续随机变量$X$的分布函数$F(x)$是连续函数
+    \item $F'(x) = p(x)$,$x$为$f(x)$的连续点
+    \item $P(X = a) = 0$,连续随机变量单点取值的概率都为0
+\end{enumerate}
+
+注意：
+\begin{enumerate}
+    \item  离散型随机变量的分布函数是右连续的阶梯函数，连续型随机变量的分布函数一定是整个数轴上的连续函数
+    \item 不可能事件的概率为0，但是概率为0的事件不一定是不可能事件，必然事件的概率为1，但是概率为1的事件不一定是必然事件
+    \item 一个连续分布的密度函数不唯一。
+\end{enumerate}
+
+\section{随机变量的数学期望}
+\subsection{数学期望的概念}
+\subsection{数学期望的定义}
+
+\begin{definition}[离散型随机变量的数学期望]
+    设离散随机变量$X$的分布列为$p(x_i)=P( X = x_i),\quad i = 1,2, \cdots,n, $，如果$\sum\limits_{i = 1}^\infty  |{x_i}|{p(x_i)} < \infty $，则称$E(X) = \sum\limits_{i = 1}^\infty  {{x_i}{p(x_i)}} $为随机变量$X$的数学期望
+\end{definition}
+
+\begin{definition}[连续型随机变量的数学期望]
+    设连续型随机变量$X$的概率密度为$f(x)$,若积分$\int_{ - \infty }^{ + \infty } {|x|f(x)dx} < \infty $，则称$E(X) = \int_{ - \infty }^{ + \infty } {xf(x)dx} $为随机变量$X$的数学期望
+\end{definition}
+
+注意：并非所有随机变量的数学期望都存在，如柯西分布。
+
+\begin{property}
+    数学期望的性质
+    \begin{enumerate}
+        \item  设$C$是常数,则有$E(C) = C$,有$E(E(X)) = E(X)$
+        \item 对任意常数$a$，有$E(aX)=aE(X)$
+        \item 设$X,Y$ 是两个随机变量, 则有$E(X + Y) = E(X) + E(Y)$
+        \item 设$X,Y$ 是相互独立的随机变量, 则有$E(XY) = E(X)E(Y)$
+        \item 对任意两个函数$g_1(x),g_2(x)$，有$E[g_1(x) \pm g_2(x)]=E[g_1(x)] \pm E[g_2(x)]$
+
+    \end{enumerate}
+\end{property}
+
+\section{随机变量的方差与标准差}
+\begin{definition}[方差与标准差的定义]
+    若随机变量$X^2$的数学期望$E(X^2)$存在，则称偏差平方$(X-EX)^2$的数学期望$E(X-EX)^2$为随机变量$X$的方差，记为$Var(X) = E( X - E(X))^2 $
+    $$\left\{ \begin{gathered}
+            \sum\limits_{i = 1}^{ + \infty } (x_i - E(X))^2 {p(x_i)} \quad \text{离散场合}\\
+            \int_{ - \infty }^{ + \infty } (x - E(X))^2 p(x)dx \quad \text{连续场合}\\
+        \end{gathered}  \right.$$
+    称方差的正平方根$\sqrt{Var(x)}$为随机变量$X$的标准差，记为$\sigma(X)$或$\sigma_x$
+
+\end{definition}
+
+\begin{property}
+    方差的性质
+    \begin{enumerate}
+        \item $Var(X)=E(X^2) - [E(X)]^2$
+        \item $Var(C)=0$,$C$为常数
+        \item 若$a,b$是常数，则$Var(aX+b)=a^2Var(X)$
+        \item 设X,Y相互独立，$Var(X),Var(Y)$存在，则$Var(X \pm Y)=Var(X)+Var(Y)$
+    \end{enumerate}
+\end{property}
+
+推论：
+若${X_1},{X_2}, \cdots ,{X_n}$相互独立，则有$Var({X_1} \pm {X_2} \pm  \cdots  \pm {X_n}) = Var({X_1}) + Var({X_2}) +  \cdots  + Var({X_n})$
+
+注意：$X$的数学期望存在，方差不一定存在；方差存在，则期望一定存在。
+
+
+\begin{theorem}[马尔可夫不等式]
+    设$X$是取非负值的随机变量，期望$E(X)$存在,则$\forall \varepsilon  > 0$,有$P(X \ge \varepsilon ) \le \frac{{E(X)}}{\varepsilon }$
+\end{theorem}
+
+\begin{theorem}[切比雪夫不等式]
+    设随机变量$X$的期望$E(X)$和方差$Var(X)$都存在，则对$\forall \varepsilon  > 0$，有$P(\left| {X - E(X)} \right| \ge \varepsilon ) \le \frac{{Var(X)}}{{{\varepsilon ^2}}}$或$P(\left| {X - E(X)} \right| < \varepsilon ) \ge 1 - \frac{{Var(X)}}{{{\varepsilon ^2}}}$
+\end{theorem}
+注：若$\varepsilon=k \sqrt{Var(X)}$，则$P(\left| {X - E(X)} \right| \ge \varepsilon ) \le \frac{1}{k^2}$
+
+\section{常用离散分布}
+\subsection{二项分布}
+
+\paragraph{两点分布}
+设随机变量$X$只取两个值$0,1$，其分布律为$$P(X=k)=p^k(1-p)^{1-k},k=0,1$$,则称$X$服从(0-1)分布或两点分布。$E(X) =p$
+$Var(X) =pq$
+
+\paragraph{二项分布}
+$P(A)=p(0< p <1)$，$X$为$E$中$A$出现的次数，则称$X$服从参数为$n,p$的二项分布，记为$X \sim b(n,p)$，其分布律为$$P(X=k)=\left( \begin{array}{l}n\\k\end{array} \right)\;{p^k}{(1 - p)^{n - k}},k=0,1,\cdots,n$$
+$E(X)=np$
+$Var(X)=npq$
+
+\subsection{泊松分布}
+设随机变量所有可能取值为$0,1,2,\cdots,$而取各个值的概率为$$P(X = k) = \frac{{{\lambda ^k}{{\rm{e}}^{ - \lambda }}}}{{k!}},\quad k = 0,1,2, \cdots ,$$
+其中$\lambda >0$是常数，则称$X$服从参数为$\lambda$的泊松分布，记为$X \sim P(\lambda)$
+$E(X)=\lambda$
+$Var(X)=\lambda$
+
+$\text{二项分布}\xrightarrow{np \rightarrow \lambda (n \to \infty)}\text{泊松分布}$
+
+\subsection{超几何分布}
+设一批产品共$N$件，其中含有$M$件不合格品，若从中不放回
+抽取$n$件，记$X$表示其中的不合格品数，则$X$的分布服从超几何分布，记为$X \sim h(n,N,M)$,即
+$$P(X = k) = \frac{{C_M^kC_{N - M}^{n - k}}}{{C_N^n}}$$
+$E(X)=n\frac{M}{N}$
+$Var(X) = n\frac{{M(N - M)(N - n)}}{{{N^2}(N - 1)}}$
+
+超几何分布的二项近似
+$$\mathop {\lim }\limits_{N \to \infty } \frac{{C_M^kC_{N - M}^{n - k}}}{{C_N^n}} = C_n^k{p^k}{q^{n - k}},\text{其中}p = \frac{M}{N}$$
+
+\subsection{几何分布与负二项分布}
+\paragraph{几何分布}
+设随机变量$X$的所有可能取值为$1,2,3,\cdots,k,\cdots$，而取各个值的概率为$P(X = k) = pq^{k - 1},\quad p+q=1$则称$X$服从几何分布，记为$X \sim G(p)$
+$$E(X) = \frac{1}{p},Var(X) = \frac{{1 - p}}{{{p^2}}}$$
+
+注意：几何分布的无记忆性
+$P(X > n + m\left| {X > m) = P(X > n)} \right.$
+$P(X > n) = \sum\limits_{k = n + 1}^{} {p{q^{k - 1}}}  = \frac{{{q^{n + 1}}}}{{1 - q}}p = {q^n}$
+$P(X > n + m\left| {X > m} \right.) = \frac{{P(X > n + m)}}{{P(X > m)}} = {q^n}$
+\paragraph{负二项分布（巴斯卡分布）}
+在伯努利试验中，每次事件$A$发生的概率都为$P$,记$X$为事件$A$第$r$次出现时的试验次数，则$X$的分布为负二项分布
+$$P(X = k) = C_{k - 1}^{r - 1}{p^r}{(1 - p)^{k - r}},k = r,r + 1,\cdots,$$
+记为$X \sim Nb(r,p)$
+$E(X) = \frac{r}{p},Var(X) = \frac{{r(1 - p)}}{{{p^2}}}$
+\section{常用连续分布}
+\subsection{正态分布}
+设连续型随机变量$x$的概率密度为
+$$f(x) = \frac{1}{{\sqrt {2\pi } \sigma }}{{\rm{e}}^{ - \frac{{{{(x - \mu )}^2}}}{{2{\sigma ^2}}}}},\; - \infty  < x <  + \infty ,$$
+其中$\mu,\sigma(\sigma > 0)$为常数，则称$X$服从参数为$\mu,\sigma$的正态分布或高斯分布,记为$X \sim N(\mu ,{\sigma ^2})$
+
+\begin{itemize}
+    \item 曲线关于$x=\mu$对称
+    \item 当$x=\mu$时，$f(x)$取得最大值$\frac{1}{{\sqrt {2\pi } \sigma }}$
+    \item 当$x \to  \pm \infty $时，$f(x) \to 0$
+    \item 曲线在$x = \mu  \pm \sigma $处有拐点
+    \item 曲线以$x$轴为渐近线
+    \item 当固定$\sigma$，改变$\mu$时，曲线沿$x$轴平行移动
+    \item 当固定$\mu$，改变$\sigma$的大小时，$f(x)$图形的对称轴不变，而形状在改变，$\sigma$越小，图形越高越瘦，$\sigma$越大，图形越矮越胖.
+\end{itemize}
+
+\paragraph{正态分布的分布函数}
+$$F(x) = \frac{1}{{\sqrt {2{\rm{\pi }}} \sigma }}\int_{ - \infty }^x {{{\rm{e}}^{ - \frac{{{{(t - \mu )}^2}}}{{2{\sigma ^2}}}}}} dt$$
+
+\paragraph{标准正态分布}
+当正态分布$N(\mu,\sigma^2)$中的$\mu=0,\sigma=1$时，这样的正态分布称为标准分布，记为$N(0,1)$标准正态分布的概率密度表示为
+$$\phi (x) = \frac{1}{{\sqrt {2\pi } }}{{\rm{e}}^{ - \frac{{{x^2}}}{2}}},\quad  - \infty  < x < \infty$$
+标准正态分布的分布函数表示为
+$$\Phi (x) = \int_{ - \infty }^x {\frac{1}{{\sqrt {2{\rm{\pi }}} }}{{\rm{e}}^{ - \frac{{{t^2}}}{2}}}dt} ,\quad  - \infty  < x < \infty $$
+
+$\Phi(x)=1-\Phi(-x)$
+\begin{theorem}
+    若$X\sim N(\mu ,{\sigma ^2})$，则$U = \frac{{X - \mu }}{\sigma }\sim N(0,1)$
+\end{theorem}
+由以上定理，我们马上可以得到一些在实际中有用的计算公式，若随机变量$X \sim N(\mu,\sigma^2$，则
+$$
+    \begin{array}{l}
+        P(X \leq c)=\Phi(\frac{c-\mu}{\sigma}) \\
+        P(a < X \leq b)=\Phi(\frac{b-\mu}{\sigma})-\Phi(\frac{a-\mu}{\sigma})
+    \end{array}
+$$
+
+补充
+
+\subsection{均匀分布}
+$$F(x) = \left\{ \begin{array}{l}
+        0,\quad \quad \;\;{\kern 1pt} {\kern 1pt} x < a, \\
+        \frac{{x - a}}{{b - a}},\quad a \le x < b,       \\
+        1,\quad \quad \;\;\,{\kern 1pt} {\kern 1pt} x \ge b.
+    \end{array} \right.$$
+$$f(x) = \left\{ \begin{array}{l}
+        \frac{1}{{b - a}},\quad \;a < x < b, \\
+        0,\quad \quad \quad else.
+    \end{array} \right.$$
+$E(X)=\frac{1}{2}(a + b)$
+$Var(X)=\frac{{{{(b - a)}^2}}}{{12}}$
+
+\subsection{指数分布}
+$$f(x) = \left\{ {\begin{array}{*{20}{c}}
+                {\lambda {{\rm{e}}^{ - \lambda x}},\quad x > 0,} \\
+                {0,\quad \quad \;\;\;x \le 0.}
+            \end{array}} \right.$$
+其中$\lambda>0$为常数，则称$X$服从参数为$\lambda$指数分布．
+分布函数：
+$$F(x) = \left\{ {\begin{array}{*{20}{c}}
+                {1 - {{\rm{e}}^{ - \lambda x}},x > 0,} \\
+                {0,\quad \quad \quad {\rm{  }}x \le 0.}
+            \end{array}} \right.$$
+$E(X) = \frac{1}{\lambda }$
+$Var(X)= \frac{1}{{{\lambda ^2}}}$
+
+\subsection{伽马分布}
+
+\paragraph{伽马函数} $\Gamma (\alpha ) = \int_0^\infty  {{x^{\alpha  - 1}}} {e^{ - x}}dx$
+性质
+\begin{itemize}
+    \item $\Gamma (1) = 1$
+    \item $\Gamma (\frac{1}{2}) = \sqrt \pi  $
+    \item $\Gamma (n + 1) = n!$
+    \item $\Gamma(n+1) = n \Gamma(n)$
+    \item $\Gamma(z)\Gamma(1-z)=\frac{\pi}{\sin \pi z}$
+\end{itemize}
+
+
+\paragraph{伽马分布}
+$$p(x) = \left\{ {\begin{array}{*{20}{c}}
+                {\frac{{{\lambda ^\alpha }{x^{\alpha  - 1}}{e^{ - \lambda x}}}}{{\Gamma (\alpha )}}} & {x \geqslant 0} \\
+                0                                                                                    & {x < 0}
+            \end{array}} \right.$$
+$$E(X) = \frac{\alpha }{\lambda },D(X) = \frac{\alpha }{{{\lambda ^2}}}$$
+
+伽马分布的两个特例
+\begin{enumerate}
+    \item $\alpha=1$时的伽马分布就是指数分布,即
+          $$
+              Ga(1,\lambda) \sim Exp(\lambda)
+          $$
+    \item 称$\alpha=n/2,\lambda=1/2$时的伽马分布为自由度为$n$的$\chi^2$分布，即
+          $$
+              Ga(\frac{n}{2},\frac{1}{2}) \sim \chi^2(n)
+          $$
+\end{enumerate}
+
+
+\subsection{贝塔分布}
+\paragraph{贝塔函数} $B(a,b) = \int_0^1 {{x^{a - 1}}(1 - } x{)^{b - 1}}dx$
+性质
+- $B(a,b) = B(b,a)$
+- $B(a,b) = \frac{{\Gamma (a)\Gamma (b)}}{{\Gamma (a + b)}}$
+
+\paragraph{贝塔分布}
+$$p(x) = \left\{ {\begin{array}{*{20}{c}}
+                {\frac{{\Gamma (a + b)}}{{\Gamma (a)\Gamma (b)}}{x^{a - 1}}{{(1 - x)}^{b - 1}}} & {0 < x < 1} \\
+                0                                                                               & {else}
+            \end{array}} \right.$$
+$$E(X) = \frac{a}{{a + b}},D(X) = \frac{{a(a + 1)}}{{(a + b)(a + b + 1)}}$$
+
+
+\begin{itemize}
+    \item 当$a=1,b=1$时，$Be(1,1)=U(0,1)$
+\end{itemize}
+
+% |分布|分布列$p_k$或分布密度函数p(x)|期望|方差|
+% | :--------: | :--------: | :--------: | :--------: |
+% | 0-1分布 |$$p_k=p^k(1-p)^{1-k},k=0,1$$ | $$p$$ | $$p(1-p)$$ |
+% |二项分布 $b(n,p)$|$$p_k=\left( \begin{array}{l}n\\k\end{array} \right)\;{p^k}{(1 - p)^{n - k}},k=0,1,\cdots,n$$ |$$np$$|$$np(1-p)$$|
+% |泊松分布 $P(\lambda)$|$$P_k = \frac{{{\lambda ^k}{{\rm{e}}^{ - \lambda }}}}{{k!}},\quad k = 0,1,2, \cdots ,$$|$$\lambda$$|$$\lambda$$|
+% |超几何分布 $h(n,N,M)$|$$P(X = k) = \frac{{C_M^kC_{N - M}^{n - k}}}{{C_N^n}},k=0,1,\cdots,r\\ r= min\{M,n\}$$|$$n\frac{M}{N}$$|$$n\frac{{M(N - M)(N - n)}}{{{N^2}(N - 1)}}$$|
+% |几何分布$Ge(p)$|$$p_k=(1-p)^{k-1}p,k=1,2,\cdots$$|$$\frac{1}{p}$$|$$\frac{1-p}{p^2}$$|
+% |负二项分布 $Nb(r,p)$|$$P(X = k) = C_{k - 1}^{r - 1}{p^r}{(1 - p)^{k - r}},k = r,r + 1,\cdots$$|$$\frac{r}{p}$$|$$\frac{r(1-p)}{p^2}$$|
+% |正态分布 $N(u,\sigma^2)$|$$p(x) = \frac{1}{{\sqrt {2\pi } \sigma }}{{\rm{e}}^{ - \frac{{{{(x - \mu )}^2}}}{{2{\sigma ^2}}}}},\; - \infty  < x <  + \infty $$|$$u$$|$$\sigma^2$$|
+% |均匀分布 $U(a,b)$|$$p(x)=\frac{1}{{b - a}}$$|$$\frac{a + b}{2}$$|$$\frac{{(b - a)}^2}{12}$$|
+% |指数分布 $Exp(\lambda)$|$$p(x)=\lambda {\rm{e}^{- \lambda x}},x\ge 0$$|$$\frac{1}{\lambda}$$|$$\frac{1}{\lambda^2}$$|
+
+\section{随机变量的函数的分布}
+\subsection{离散型随机变量的函数的分布}
+设$f(x)$是定义在随机变量$X$的一切可能值$x$的集合上的函数，若随机变量$Y$随着$X$取值$x$的值而取$y=f(x)$的值，则称随机变量$Y$为随机变量$X$的函数，记作$Y=f(X)$
+
+如果$X$是离散型随机变量,其函数$Y = g(X)$也是离散型随机变量.若$X$的分布律为
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            $X$   & $x_1$ & $x_2$ & $\cdots$ & $x_k$ & $\cdots$ \\
+            \hline
+            $p_k$ & $p_1$ & $p_2$ & $\cdots$ & $p_k$ & $\cdots$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+则$Y=g(X)$的分布律为
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            $Y=g(X)$ & $g(x_1)$ & $g(x_2)$ & $\cdots$ & $g(x_k)$ & $\cdots$ \\
+            \hline
+            $p_k$    & $p_1$    & $p_2$    & $\cdots$ & $p_k$    & $\cdots$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+若$g(x_k)$中有值相同的，应将对应的$p_k$合并
+
+
+
+\subsection{连续型随机变量的函数的分布}
+1. $Y=g(X)$严格单调时,先求分布函数，再求密度函数
+\begin{theorem}
+    设随机变量$X$的具有概率密度${f_X}(x)$，其中$ - \infty  < x <  + \infty $,又设函数$g(x)$处处可导，且恒有$g'(x) > 0$（或恒有$g'(x) < 0$）,则称$Y = g(X)$是连续随机变量，其概率密度为
+    $${f_Y}(y) = \left\{ {\begin{array}{*{20}{c}}
+                    {{f_X}[h(y)]\left| {h'(y)} \right|,\quad \alpha  < y < \beta ,} \\
+                    {0,\quad \quad \quad \quad {\rm{else}}.}
+                \end{array}} \right.$$
+    其中$\alpha  = \min (g( - \infty ),\;g( + \infty )),\;\beta  = \max (g( - \infty ),g( + \infty ))$，$h(y)$是$g(x)$的反函数
+\end{theorem}
+
+$Y=g(X)$为其它情形时，由定义求分布函数。
+
+思考：
+设$g(x)$是连续函数，若$X$是离散随机变量，则$Y=g(X)$也是离散型随机变量吗？若$X$是连续型的又怎样？
+
+若$X$是离散型随机变量，它的取值是有限个或可列无限多个，因此$Y$的取值也是有限个或可列无限多个，因此$Y$是离散型随机变，若$X$是连续型随机变量，那么$Y$不一定是连续型随机变量。
+
+\section{分布的其它特征数}
+\subsection{k阶矩阵}
+\begin{definition}
+    设$X$是一个随机变量，$k$为正整数。如果以下的数学期望都存在，则称$u_k=E(X^k)$为$X$的$k$阶原点矩，称$v_k=E(X-E(X))^k$为$X$的$k$阶中心矩
+\end{definition}
+
+
+\subsection{变异系数}
+\begin{definition}
+    设随机变量$X$的二阶矩存在，则称比值$C_v(X)=\frac{\sqrt{Var(X)}}{E(X)}=\frac{\sigma(X)}{E(X)}$为$X$的变异系数
+\end{definition}
+
+
+\subsection{分位数}
+\begin{definition}
+    设连续型随机变量$X$的分布函数为$F(x)$，密度函数为$p(x)$，对任意$p \in (0,1)$，称满足条件$F(x_p)=\int_{- \infty}^{x_p}p(x)dx=p$的$x_p$为此分布的$p$分位数，又称下侧$p$分位数。
+\end{definition}
+
+
+\subsection{中位数}
+\begin{definition}
+    设连续随机变量$X$的分布函数为$F(x)$，密度函数为$p(x)$.称$p=0.5$时的$p$分位数$x_{0.5}$为此分布的中位数，即$x_{0.5}$满足$F(x_{0.5})=\int_{- \infty}^{x_{0.5}}p(x)dx=0.5$
+\end{definition}
+\subsection{偏度系数}
+
+\begin{definition}
+    设随机变量$X$的前三阶矩存在，则比值
+    $$
+        \beta_{s}=\frac{\nu_{3}}{\nu_{2}^{3/2}}=\frac{E(X-E(X))^{3}}{\left[\mathrm{Var}(X)\right]^{3/2}}
+    $$
+    称为$X$（或分布）的偏度系数，简称偏度．当$\beta_s > 0$时，称该分布为正偏，又称右偏；当$\beta_s < 0$时，称该分布为负偏，又称左偏.
+
+\end{definition}
+
+\subsection{峰度系数}
+\begin{definition}
+    设随机变量$X$的前四阶矩存在，则
+    $$
+        \beta_{k}=\frac{\nu_{4}}{\nu_{2}^{2}}-3=\frac{E\left(X-E(X)\right)^{4}}{\left[\mathrm{Var}(X)\right]^{2}}-3
+    $$
+    称为$X$ （或分布）的峰度系数，简称峰度．
+\end{definition}
+
+\begin{itemize}
+    \item $\beta_k >0$表示标准化后的分布比标准正态分布更尖峭和（或）尾部更粗
+    \item $\beta_k < 0$表示标准化后的分布比标准正态分布更平坦和（或）尾部更细
+\end{itemize}

@@ -1,0 +1,97 @@
+\documentclass[a4paper,openany,oneside,fontset=none]{ctexbook}
+% \usepackage[fontset=none]{ctex}
+
+\ctexset{
+	chapter={
+        name = {第,章}
+    },
+}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\setlength{\headheight}{12.7pt}
+\pagestyle{fancy}
+\fancyhead[L]{By Ling Yu}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\labelformat{equation}{公式 (#1)}  % 加括号
+\usepackage[bookmarksopen=true,unicode,psdextra]{hyperref}
+\usepackage{bookmark}
+\hypersetup{
+    hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true,
+    % bookmarks=true,     % 显示书签
+    bookmarksopen=true, % 初始展开所有书签
+    bookmarksnumbered=true, % 给书签添加章节编号
+}
+% \usepackage{bookmark}
+\title{\textbf{概率论与数理统计}}
+\author{Ling Yu}
+\date{\today}
+
+
+\newtheorem{example}{\indent 例}[section]            % 整体编号
+\newtheorem{algorithm}{\indent 算法}
+\newtheorem{theorem}{\indent 定理}[section]  % 按 section 编号
+\newtheorem{definition}{\indent 定义}[section]
+\newtheorem{axiom}{\indent 公理}
+\newtheorem{property}{\indent 性质}[section]
+\newtheorem{proposition}{\indent 命题}
+\newtheorem{lemma}{\indent 引理}
+\newtheorem{corollary}{\indent 推论}[section]
+\newtheorem{remark}{\indent 注解}
+\newtheorem{condition}{\indent 条件}
+\newtheorem{conclusion}{\indent 结论}
+\newtheorem{assumption}{\indent 假设}
+\numberwithin{equation}{section}
+\newenvironment{solution}{\begin{proof}[解]}{\end{proof}}
+
+
+\setCJKmainfont[BoldFont = PingFangSC-Semibold, ItalicFont=PingFangSC-Regular]{PingFangSC-Medium}
+\setCJKsansfont{FZHei-B01}[BoldFont={Source Han Sans SC Medium}]
+\setCJKmonofont{FZFangSong-Z02}
+\newCJKfontfamily\songti{FZShuSong-Z01S}[BoldFont={Source Han Serif SC}]
+\newCJKfontfamily\heiti{FZHei-B01S}[BoldFont={Source Han Sans SC Medium}]
+
+\begin{document}
+% \begin{sloppypar}
+\maketitle
+% \pdfbookmark[0]{目录}{toc}
+% 将目录页添加到书签
+% \pdfbookmark{\contentsname}{目录}
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
+\tableofcontents
+% \addcontentsline{toc}{section}{目录}
+
+\newpage
+\setcounter{page}{1}
+% \clearpage % 新建一页，开始正文内容
+
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+% \setcounter{chapter}{4}
+\include{chapter5}
+\include{chapter6}
+\include{chapter7}
+\include{chapter8}
+
+% \addcontentsline{toc}{section}{Reference}
+
+
+% \end{sloppypar}
+\end{document} 
